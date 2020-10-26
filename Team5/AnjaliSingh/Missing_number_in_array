@@ -1,0 +1,30 @@
+#include<iostream>
+
+using namespace std;
+
+int find(int arr[], int size)
+{
+    int m, i, b, d = 1;
+    float s=0;
+    m = size + 1;
+    b = arr[0];
+    s = m * (0.5 * ((2*b) + (size*d)));
+    for(i=0; i<size; i++)
+    {
+        s = s - arr[i];
+    }
+    return s;
+}
+
+int main()
+{
+    int a[100], n, x, i;
+    cout<<"\n\tEnter the size of array:\t";
+    cin>>n;
+    cout<<"\n\tEnter elements of array:\t";
+    for(i=0;i<n;i++)
+    cin>>a[i];
+    x = find(a, n);
+    cout<<"\n\tMissing number is:\t"<<x;
+    return 0;
+}
