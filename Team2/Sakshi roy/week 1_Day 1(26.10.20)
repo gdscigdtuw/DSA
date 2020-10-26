@@ -1,0 +1,79 @@
+//missing element
+class Solution {
+public:
+        int missingNumber(vector<int>&arr)
+    {
+    int m, i, b, y, d = 1;
+    float s=0;
+    y = arr.size();
+    m = y+1;
+    b = arr[0];
+    for(i=1;i<y;i++) 
+    {
+        if(arr[i]<b)
+            b = arr[i];
+    }
+    s = m * (0.5 * ((2*b) + (y*d)));
+    for(i=0; i<y; i++)
+    {
+        s = s - arr[i];
+    }
+    return s;
+    }
+};
+
+
+//duplicate numbers
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n=nums.size();
+        if(n==0){
+            return 0;
+        }
+        int i=0;
+        for(int j=1;j<n;j++){
+            if(nums[j]!=nums[i]){
+                i++;
+                nums[i]=nums[j];
+            }
+        }
+        return i+1;
+    }
+};
+
+//spiral matrix
+class Solution{
+public:
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int m = matrix.size(), n = m ? matrix[0].size() : 0, u = 0, d = m - 1, l = 0, r = n - 1, p = 0;
+        vector<int> order(m * n);
+        while (u <= d && l <= r) {
+            for (int col = l; col <= r; col++) {
+                order[p++] = matrix[u][col];
+            }
+            if (++u > d) {
+                break;
+            }
+            for (int row = u; row <= d; row++) {
+                order[p++] = matrix[row][r];
+            }
+            if (--r < l) {
+                break;
+            }
+            for (int col = r; col >= l; col--) {
+                order[p++] = matrix[d][col];
+            }
+            if (--d < u) {
+                break;
+            }
+            for (int row = d; row >= u; row--) {
+                order[p++] = matrix[row][l];
+            }
+            if (l++ > r) {
+                break;
+            }
+        }
+        return order;
+    };
