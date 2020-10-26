@@ -15,6 +15,6 @@ public:
             sum+= nums[i];                  // calculating sum of the numbers in the array
         }
         
-        return (total_sum - sum);         // subtracting sum of array elements from total_sum
+        return (total_sum - sum);         // subtracting sum of array elements from the total_sum
     }
 };
