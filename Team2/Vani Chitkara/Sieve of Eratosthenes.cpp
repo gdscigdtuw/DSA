@@ -17,7 +17,7 @@ vector<int> sieveOfEratosthenes(int N){
           }
         }
    }
-          for(int i=2;i<N;++i)
+          for(int i=2;i<=N;++i)
           {
               if(prime[i] == 0)
               {
