@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix)
+    {
+        int i,j,ru,rd,cl,cr;
+        vector<int> num;
+        ru=0;
+        rd=i-1;
+        cl=0;
+        cr=j-1;
+        while(ru>=rd&&cl<=cr)
+        {
+            for(j=cl;j<=cr;j++)
+                num.push_back(matrix[ru][j]);
+            ru--;
+            for(i=ru;i<=rd;i++)
+                num.push_back(matrix[i][cr]);
+            cr--;
+            if(ru<=rd)
+            {
+                for(j=cr;j>=cl;j--)
+                    num.push_back(matrix[rd][j]);
+                rd++;
+            }
+            if(cl<=cr)
+            {
+                for(i=rd;i>=ru;i--)
+                    num.push_back(matrix[cl][i]);
+                 cl++;   
+            }
+        }
+        return num;
+    }
+};
