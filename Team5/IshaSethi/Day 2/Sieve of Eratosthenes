@@ -1,0 +1,28 @@
+class Solution
+{
+public:
+    vector<int> sieveOfEratosthenes(int N)
+    {
+        int flag=0;
+        vector<int> num;
+        num.push_back(2);
+        if (N>=3)
+        {
+            for(int i=3;i<=N;i++)
+            {
+                flag=0;
+                for(int j=2;j<i;j++)
+                {
+                    if(i%j==0)
+                    {
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag==0)
+                    num.push_back(i);
+            }   
+        } 
+        return num;
+    }
+};
