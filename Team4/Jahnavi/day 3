@@ -1,0 +1,20 @@
+Q1 Pivot element https://leetcode.com/problems/find-pivot-index/
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int n=nums.size();
+        int flag=-1;
+        for(int i=0;i<n;i++)
+        {
+            int s1=0,s2=0;
+            for(int j=0;j<i;j++) s1=s1+nums[j];
+            for(int k=i+1;k<n;k++) s2=s2+nums[k]; 
+            if(s1==s2) 
+            {
+                flag=i;
+                break;
+            }
+        }
+        return flag;
+    }
+};
