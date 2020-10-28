@@ -18,3 +18,65 @@ public:
         return flag;
     }
 };
+Q.2. product of array except self
+https://leetcode.com/problems/product-of-array-except-self/
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n=nums.size();
+        vector<int>v;
+        int prod=1;
+        for(int i=0;i<n;i++)
+        prod*=nums[i];
+        for(int i=0;i<n;i++) 
+        {  if(nums[i]!=0) 
+            v.push_back(prod/nums[i]);
+         else {int p1=1,p2=1;
+            for(int j=0;j<i;j++) 
+                p1*=nums[j];
+            for(int k=i+1;k<n;k++)
+                p2*=nums[k];
+         v.push_back(p1*p2);
+              }
+        }
+        return v;
+    }
+};
+Q.3 monotonic array 
+https://leetcode.com/problems/monotonic-array/
+class Solution {
+public:
+    bool isMonotonic(vector<int>& a) {
+      return inc(a)||dec(a);
+        
+    }
+    bool inc(vector<int>&a) 
+    {
+        for(int i=0;i<a.size()-1;i++)
+{if(a[i+1]<a[i]) return false;}
+         return true;
+         
+}
+     bool dec(vector<int>&a)
+     {
+for(int i=0;i<a.size()-1;i++)
+{if(a[i+1]>a[i]) return false;}
+         return true;
+         }
+};
+Q.4 move zeros
+https://leetcode.com/problems/move-zeroes/
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0;i<n-1;i++)
+        {
+            for(int j=i+1;j<n;j++) 
+            {
+                if(nums[i]==0&&nums[j]!=0) 
+                    swap(nums[i],nums[j]);
+            }
+        }
+    }
+};
