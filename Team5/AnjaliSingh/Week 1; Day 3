@@ -46,18 +46,20 @@ public:
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        int i,n,j,c=0;
-        vector<int> B;
+        int i,n,j,x=0,c=1;
+        vector<int> arr;
         n=nums.size();
         for(i=0;i<n;i++)
         {
-            for(j=i+1;j<n;j++)
-            {
-                c=c*nums[j];
+            for(j=0;j<n;j++)
+            {    
+                if(i!=j)
+                    c=c*nums[j];
             }
-            B[i]=c;
+            arr.push_back(c);
+            c=1;
         }
-        return B;
+        return arr;
     }
 };
 
