@@ -1,0 +1,22 @@
+class Solution 
+{
+    public:
+    int pivotIndex(vector<int>& nums) 
+    {
+        int k=-1,m,j,i;
+        for(i=0;i<nums.size();i++)
+        {
+            int lsum=0,rsum=0;
+            for(j=0;j<i;j++)
+                lsum+=nums[j];
+            for(m=i+1;m<nums.size();m++)
+                rsum+=nums[m];
+            if(lsum==rsum)
+            {
+                k=i;
+                break;
+            }
+        }
+        return k;
+    }
+};
