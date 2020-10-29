@@ -1,0 +1,14 @@
+class Solution
+{
+    public:
+    int maxSubArray(vector<int>& nums) 
+    {
+        int result=nums[0],prvs_sum=nums[0];
+        for (int i =1;i<nums.size();i++)
+        {
+            prvs_sum=max(prvs_sum+nums[i],nums[i]);
+            result=max(result,prvs_sum);
+        }
+        return result;
+    }
+};
