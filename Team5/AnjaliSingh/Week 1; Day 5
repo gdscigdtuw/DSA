@@ -1,0 +1,38 @@
+//Count_and_Say
+
+
+
+//Reverse_Only_Letters
+
+class Solution {
+public:
+        bool isString(char a)
+        {
+            if((a>=65&&a<=90) || (a>=97&&a<=122))
+                return true;
+        return false;
+        }
+        string reverseOnlyLetters(string s)
+        {
+            int i=0,j=s.size()-1;
+            while(i<j)
+            {
+                if(isString(s[i]) && isString(s[j]))
+                {
+                    char tmp=s[i];
+                    s[i]=s[j];
+                    s[j]=tmp;
+                    i++;
+                    j--;
+                }
+                else if(!isString(s[i]))
+                    i++;
+                else if(!isString(s[j]))
+                    j--;
+            }  
+            return s;
+        }
+};
+
+//Longest_Substring_Without_Repeating_Characters
+
