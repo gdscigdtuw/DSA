@@ -1,0 +1,59 @@
+Ques-1 Rotate array
+
+class Solution {
+    void reverse_range(int[] arr, int i, int j) {
+        while (i < j)
+        {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    public void rotate(int[] nums, int k) {
+        k = k%nums.length;
+        if (nums.length <= 1)
+            return;
+        reverse_range(nums, 0, nums.length-1);
+        reverse_range(nums, k, nums.length-1);
+        reverse_range(nums, 0, k-1);
+    }
+}
+
+Ques-2 Maximum subarray
+
+class Solution {
+public int maxSubArray(int[] nums) {
+int sum=nums[0];
+for(int i=1;i<nums.length;i++){
+if(nums[i-1]>0){
+nums[i]+=nums[i-1];
+}
+sum=Math.max(nums[i],sum);
+}
+return sum;
+}
+}
+
+Ques-3 Count Negative Numbers in a Sorted Matrix
+
+class Solution {
+public int countNegatives(int[][] a) {
+
+    int counter=0;
+    for(int i=0;i<a.length;i++){
+        for(int j=a[i].length-1;j>=0;j--){
+            if(a[i][j]<0){
+                counter++;
+            }else
+                break; 
+        }
+    }
+    return counter;
+}
+}
+
+Ques-4 Sieve of Eratosthenes 
+
+
