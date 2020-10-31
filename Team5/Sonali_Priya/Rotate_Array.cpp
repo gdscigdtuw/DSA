@@ -1,5 +1,3 @@
-
-
 void rotate(int* nums, int numsSize, int k){
     int nums_rotate[numsSize];
     k = k%numsSize;
