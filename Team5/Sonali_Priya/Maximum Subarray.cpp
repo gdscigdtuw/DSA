@@ -8,6 +8,5 @@ public:
             max_sum = max(max_sum, sum); 
         }
         return max_sum;
-    }
-       
+    } 
 };
