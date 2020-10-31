@@ -1,0 +1,21 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        //if the array is empty return 0
+        if (nums.length == 0){
+            return 0;
+        }
+        //p1 is pointing to the first element of the array
+        int p1 = 0;
+        //p2 is pointing to the second element of the array
+        for(int p2 = 1; p2<nums.length; p2++){
+            //if the value of two elements are not same then we increment p1 by 1
+            if(nums[p1] != nums[p2]){
+                p1++;
+                nums[p1] = nums[p2];
+            
+            }
+        }
+        //returning number of unique elements in the array
+        return ++p1;
+    }
+}
