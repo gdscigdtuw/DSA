@@ -22,3 +22,4 @@ public:
         }
         return vector_prime;
         }
+};
