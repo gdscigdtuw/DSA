@@ -1,0 +1,64 @@
+Ques1- Missing number
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        
+        int missing = nums.length;
+        for(int i=0; i<nums.length; i++) {
+           missing += i;
+           missing -= nums[i];
+        }
+
+        return missing;
+    }
+}
+
+Ques2-Remove duplicates from a sorted array
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        
+
+        if(nums.length == 0)
+            return 0;
+        int index = 0;
+        for(int i = 0; i < nums.length -1; i++){
+            if(nums[i] != nums[i + 1]){
+                nums[index++] = nums[i];
+            }
+        }
+        nums[index] = nums[nums.length - 1];
+       
+        return index + 1;
+    
+    }
+}
+
+Ques-3 Spiral matrix
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+          if(matrix.length == 0) return new ArrayList<>();
+        int row = matrix.length;
+        int col = matrix[0].length;
+        boolean[][] check = new boolean[row][col];
+        List<Integer> res = new ArrayList<>();
+        re(matrix,0,0,check,res);
+        return res;
+    }
+    private void re(int[][] matrix, int row, int col, boolean[][] check, List<Integer> res){
+        if(row >= matrix.length || row < 0 || col >= matrix[0].length || col < 0 || check[row][col] == true) return;
+        
+        res.add(matrix[row][col]);
+        check[row][col] = true;
+        
+        if(row > 0 && check[row-1][col] == false && check[row][col+1] == false) re(matrix,row-1,col,check,res);
+        
+        re(matrix,row,col+1,check,res); 
+        re(matrix,row+1,col,check,res); 
+        re(matrix,row,col-1,check,res); 
+        re(matrix,row-1,col,check,res); 
+        
+        return;
+    }
+}
