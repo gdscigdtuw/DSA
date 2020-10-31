@@ -1,0 +1,15 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        int sum = 0;
+        int n =nums.length;
+        //Calculting the sum of the array including the missing number
+        int temp = n*(n +1)/2;
+        //Calculating the sum of the array without missing number i.e. the actual array
+        for(int i = 0; i < n; i++){
+            sum += nums[i];
+        }
+        //The missing number will be equal to the difference of temp - sum
+        return (temp - sum);
+         
+    }
+}
