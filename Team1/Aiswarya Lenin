@@ -1,0 +1,31 @@
+class Solution {
+    
+    public void reverse(int[] nums, int i, int j){
+         
+        //reversing the array here i represents the first element of the array and j the last
+        while(i < j){
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            i++;
+            j--;
+        }
+        
+    }
+   
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k = k%n;
+        if(k< 0){
+            k = k + n;
+        }
+        //reversing part one of the array
+        reverse(nums, 0, n - k -1);
+         //reversing part of the array
+        reverse(nums, n - k, n -1);
+        //reversing the entire array now
+        reverse(nums, 0, n - 1);
+        
+     
+    }
+}
