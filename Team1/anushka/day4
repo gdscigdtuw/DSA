@@ -1,0 +1,113 @@
+Ques1- reverse vowels of a string
+
+class Solution {
+    public String reverseVowels(String s) {
+        if(s.length()==1) return s; 
+        char [] array=s.toCharArray();
+        while(a<b)
+        {
+          
+            if(isVowel(array[a]) && isVowel(array[b]))
+            {
+                char temp=array[a];
+                array[a]=array[b];
+                array[b]=temp;
+                a++;b--;
+            }
+            
+            else if(isVowel(array[a]) && !isVowel(array[b]))
+            {
+                b--;
+            }
+           
+            else
+            {
+                a++;
+            }
+                
+        }
+        return new String(array);
+            
+    }
+    
+    
+    
+    public boolean isVowel(char c)
+    {
+                boolean b=false;
+        switch(c)
+        {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
+                b=true;break;
+            default: 
+                b=false;break;
+        }
+        
+        return b;
+    }
+}
+
+Ques-2 Valid palindrome
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        if (s.length() == 0) return true;
+        String palindrome = "";
+        
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLetterOrDigit(s.charAt(i))) palindrome += s.charAt(i);
+        }
+        palindrome = palindrome.toLowerCase();
+        int start = 0, end = palindrome.length()-1;
+        while (start < end) {
+            if (palindrome.charAt(start) != palindrome.charAt(end)) return false;
+            end--;
+            start++;
+        }
+        return true;
+    }
+}
+
+Ques-3 Create Target Array in the Given Order
+
+class Solution {
+public int[] createTargetArray(int[] nums, int[] index) {
+int a[] = new int[nums.length];
+
+    for (int i = 0; i < nums.length; i++) {
+        if (a[index[i]] == 0) {
+            a[index[i]] = nums[i];
+        } else {
+            System.arraycopy(a, index[i], a, index[i] + 1, (a.length - index[i]) - 1);
+            a[index[i]] = nums[i];
+        }
+    }
+    return a;
+}
+}
+
+
+Ques-4 XOR Operation in an Array
+
+class Solution {
+    public int xorOperation(int n, int start) {
+        int[] nums = new int[n];
+        for(int i = 0 ; i<n; i++){
+            nums[i] = (start + (2*i));
+        }
+        int k = nums[0];
+        for(int i = 1 ; i<n; i++){
+            k = k ^ nums[i];
+        }
+        return k;
+    }
+}
