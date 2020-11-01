@@ -32,4 +32,6 @@ int main(){
 	cout<<"Array after moving all the zeroes at the end is "<<endl;
 	for(int i=0;i<size;i++)
 		cout<<a[i]<<" ";
+        cout<<endl;
+        return 0;
 }
