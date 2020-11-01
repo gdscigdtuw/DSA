@@ -1,0 +1,25 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int l = nums.length;
+        //initializing a new array to store the products
+        int[] n = new int [l];
+        //first element = 1 because there is no element present to the left of the first element
+        n[0] = 1;
+        //calculating product of all the elements to the left of the element 
+        for(int i = 1; i < l; i++){
+            n[i] = n[i - 1] * nums[i - 1];
+        }
+        //there is no element to the right of the last element in nums so R = 1
+        int R = 1;
+        /*calculating the product of all the elements to the right of the array and
+        multiplying it with the product obtained from the right*/
+        for(int i = l-1; i >= 0; i--){        
+            n[i] = n[i] * R;
+            //calculating product off all the elements to the right of the array
+            R *= nums[i];
+        }
+        
+        return n;
+    
+}
+}
