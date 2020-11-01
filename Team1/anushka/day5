@@ -1,0 +1,85 @@
+Ques-1 Count and say 
+
+class Solution {
+    public String countAndSay(int n) {
+        
+        if(n==1){
+            return "1";
+        }
+        
+        String s = countAndSay(n-1); 
+        
+        StringBuilder sn = new StringBuilder();
+        int len = s.length();
+        
+        for(int i = 0; i < len; ){  
+            int j = i + 1;          
+            int count = 1;          
+            if(j < len){            
+                while((s.charAt(j) == s.charAt(i))){
+                    count += 1;
+                    j++;
+                    if(!(j < len)){
+                        break;
+                    }
+                }
+            }            
+
+            sn.append(count).append(s.charAt(i));
+            i = j;  
+        }
+        return sn.toString();
+        
+    }
+}
+
+Ques-2 Reverse Only Letters
+
+class Solution {
+    
+        public String reverseOnlyLetters(String S) {
+	int i = 0, j = S.length()-1;
+	char[] chars = S.toCharArray();
+	while(i < j) {
+		while(i < S.length() && !Character.isLetter(chars[i])) i++;
+		while(j>=0 && !Character.isLetter(chars[j])) j--;
+		if(i<j && i<S.length() && j>=0) {
+			char temp = chars[i];
+			chars[i] = chars[j];
+			chars[j] = temp;
+			i++;
+			j--;
+		}
+	}
+	return String.valueOf(chars);
+}
+    
+}
+
+Ques-3 Longest Substring Without Repeating Characters
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int start = 0;
+        int counter = 0;
+        int max = 0;
+        
+        int count[] = new int[256];
+        
+        for(int i=0; i< s.length(); i++){
+            if(count[s.charAt(i)]++ == 0){  // counting unique characters
+                counter++;
+            }
+            
+            if(i-start+1 > counter){
+                if(--count[s.charAt(start++)] == 0){
+                    counter--;
+                }
+            }
+            
+            max = Math.max(max, i-start+1);
+        }
+        
+        return max;
+    }
+}
