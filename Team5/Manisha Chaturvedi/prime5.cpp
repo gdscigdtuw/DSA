@@ -22,4 +22,6 @@ int main(){
 	else
 		cout<<"No prime numbers is present "<<endl;
 	return 0;
+	
 }
+
