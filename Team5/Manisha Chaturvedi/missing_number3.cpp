@@ -15,4 +15,6 @@ int main(){
 	}
 	cout<<"Missing number is "<<s1-s2;
 	return 0;
+	
 }
+
