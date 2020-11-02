@@ -18,4 +18,6 @@ int main(){
 	}
 	cout<<"Total negative numbers present in the given matrix is "<<neg;
 	return 0;
+	
 }
+
