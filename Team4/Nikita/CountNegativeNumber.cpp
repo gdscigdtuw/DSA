@@ -8,7 +8,7 @@ public:
         while(x<r && y>=0){
             if(grid[x][y]<0){
                 count+=(r-x);   
-                y--;           
+                y--;         
             }
             else    x++;      
         }
