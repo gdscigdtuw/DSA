@@ -1,0 +1,21 @@
+class Solution 
+{
+    public:
+    vector<int> productExceptSelf(vector<int>& nums) 
+    {
+        int N = nums.size();
+        vector<int> oa(N);
+        outputArr[0] = 1;
+        int i = 1;
+        for(;i < N;++i) {
+            or[i] = oa[i-1] * nums[i-1];
+        }
+        int R = 1;
+         i = N-1;
+        for(; i >=0; --i) {
+            oa[i] = oa[i] * R;
+            R = R*nums[i];
+        }      
+        return oa;
+    }
+};
