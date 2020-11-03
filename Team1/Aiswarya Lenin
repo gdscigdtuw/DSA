@@ -1,0 +1,46 @@
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> m = new ArrayList();
+        //if the matrix is empty return empty matrix
+         if (matrix.length == 0){
+             return m;
+         }
+        //assigning variables to the end points of the matrix as we keep moving in
+        int rowBeg = 0;
+        int rowEnd = matrix.length - 1;
+        int colBeg = 0;
+        int colEnd = matrix[0].length - 1 ;
+        
+        while(rowBeg <= rowEnd && colBeg <= colEnd){
+            //for covering the first row from left to right
+            for(int i = colBeg; i <= colEnd; i++){
+                m.add(matrix[rowBeg][i]);
+            }
+            //since we have covered the first row of the matrix we move to next row from top
+            rowBeg++;
+            //for covering the last column of the matrix
+            for(int i = rowBeg; i <= rowEnd; i++){
+                m.add(matrix[i][colEnd]);
+            }
+            //moving to the second last column
+            colEnd--;
+            
+            if(rowBeg <= rowEnd){
+                //for covering the last row from the last column to the first column
+                for(int i = colEnd; i >= colBeg; i--){
+                    m.add(matrix[rowEnd][i]);
+                }
+                rowEnd--;
+            }
+            //for covering the first column from the last row to the first row
+            if(colBeg <= colEnd){
+                for(int i = rowEnd; i >= rowBeg; i--){
+                    m.add(matrix[i][colBeg]);
+                }
+                colBeg++;
+            }
+        }
+        return m;
+        
+    }
+}
