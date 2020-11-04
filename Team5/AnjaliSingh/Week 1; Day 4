@@ -1,0 +1,89 @@
+//XOR_Operations
+
+class Solution {
+public:
+    int xorOperation(int n, int start) {
+        int arr[1000], i=0, c=0;
+        for(i=0;i<n;i++)
+        {
+            arr[i]=start+2*i;
+            c=c^arr[i];
+        }
+        return c;
+    }
+};
+
+//Create_Target_Array
+
+class Solution {
+public:
+    vector<int> createTargetArray(vector<int>& nums, vector<int>& index) {
+        vector <int> target;
+        for(int i = 0; i < index.size(); i++){
+            target.insert(target.begin()+index[i], nums[i]);
+        } 
+        return target;
+    }
+};
+
+//Valid_Palindrome
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        string str;
+        for(char c : s)
+        {
+            if(isalnum(c)) 
+            {
+                if((c >= 65 and c <= 90))
+                    c=c+32;
+                str+=c;
+            }        
+        }
+        string rev = str;
+        int n = rev.length()-1;
+        int i = 0;
+        while(i < n) 
+        {
+            swap(rev[i],rev[n]);
+            i++;
+            n--;
+        }
+        if(str==rev)
+            return true;
+        return false;
+        }     
+    };
+    
+    //Reverse_Vowels
+    
+class Solution {
+public:
+    bool isVowel(char a){
+        if(a=='a' || a=='e' || a=='i' || a=='o' ||a=='u' ||
+          a=='A' || a=='E' || a=='I' || a=='O' ||a=='U' ){
+            return true;
+        }
+        return false;
+    }
+   
+    string reverseVowels(string s) {
+        int i=0,j=s.size()-1;
+        while(i<j){
+            if(isVowel(s[i]) && isVowel(s[j])){
+                char tmp=s[i];
+                s[i]=s[j];
+                s[j]=tmp;
+                i++;j--;
+            }
+            else if(!isVowel(s[i])){
+                i++;
+            }
+            else if(!isVowel(s[j])){
+                j--;
+            }
+        }
+        return s;
+    }
+};
