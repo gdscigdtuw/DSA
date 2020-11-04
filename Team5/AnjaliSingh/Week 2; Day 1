@@ -1,0 +1,111 @@
+//Remove_Nth_Node_From_End_Of_List
+
+
+
+//Merge_Two_Sorted_Lists
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        
+        ListNode* l3;
+        
+        if(l1==NULL) 
+            return l2;
+        else if(l2==NULL) 
+            return l1;
+        
+        if(l1->val < l2->val)
+        {
+            l3 = l1;
+            l3->next = mergeTwoLists(l1->next,l2);
+        } 
+        else
+        {
+            l3 = l2;
+            l3->next = mergeTwoLists(l1,l2->next);
+        }
+        return l3;
+    }
+};
+
+//Remove_Duplicates_From_Sorted_List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode *prev=head,*next;
+ 
+        if(!head)
+            return NULL;
+        else
+            next = head->next;
+ 
+        while(next!=NULL)
+        {
+            if(prev->val != next->val)
+            {
+                prev = next;
+                next = next->next;
+            }
+            else
+            {
+                prev->next = next->next;
+                delete next;
+                next = prev->next;
+            }
+        }
+        return head;
+        }
+};
+
+//Linked_List_Cycle
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) 
+    {
+        ListNode *fast, *slow;
+        fast = slow = head;
+        while (fast != NULL && slow != NULL)
+        {
+            if (fast->next != NULL)     
+                fast = fast->next->next;
+            else    
+                fast = NULL;
+            slow = slow->next;
+            if (fast != NULL && fast == slow)   
+                return true;
+        }
+        return false;
+    }
+};
+        
