@@ -1,0 +1,34 @@
+class Solution {
+public:
+    
+ void swap(int& a, int& b) {
+     
+     int x=0;
+     
+     x=a;
+     a=b;
+     b=x;
+     
+ }
+    
+ void reverse(vector<int>& nums,int start,int size) {
+     
+     int i=start, j=size-1;
+     
+     while (i<j) {
+         swap(nums[i],nums[j]);
+         i++;
+         j--;
+     }
+     
+ }
+    
+ void rotate(vector<int>& nums, int k) {
+     
+    k = k % nums.size();
+        
+    reverse(nums,0,nums.size());
+    reverse(nums,0,k);
+    reverse(nums,k,nums.size());
+    }
+};
