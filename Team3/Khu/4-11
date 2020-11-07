@@ -145,6 +145,37 @@ Q4. Remove duplicates from sorted list
 //https://leetcode.com/problems/remove-duplicates-from-sorted-list/
 
 
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        
+        if(head==NULL)
+            return NULL;
+        ListNode *fast,*slow;
+        slow=head;
+        fast=slow->next;
+        while(fast)
+        {
+            if(slow->val==fast->val)
+            {
+                slow->next=fast->next;
+                fast=fast->next;
+                
+            }
+            else
+            {
+                slow=fast;
+                fast=fast->next;
+            }
+            
+            
+        }
+        
+        
+      return head;  
+        
+    }
+};
 
 
 
