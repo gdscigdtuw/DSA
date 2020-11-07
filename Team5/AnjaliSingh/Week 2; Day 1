@@ -109,3 +109,105 @@ public:
     }
 };
         
+//
+
+
+
+//
+
+
+
+//
+
+
+
+//
+
+
+
+//
+
+
+
+//Middle_of_Linked_List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) 
+    {
+        ListNode* one = head; 
+        ListNode* two = head; 
+        while(two != NULL && two->next != NULL)
+        {
+            two = two->next->next;
+            one = one->next;
+        }
+        return one;
+    }
+};
+
+//Sort_List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if (head == NULL) return NULL;
+        vector<int> data;
+        ListNode *p = head;
+        while (p) {
+            data.push_back(p->val);
+            p = p->next;
+        }
+        sort(begin(data), end(data));
+        p = head;
+        for (const auto &n: data) {
+            p->val = n;
+            p = p->next;
+        }
+        return head;  
+    }
+};
+
+//Convert_Binary_Number_In_A_Linked_List_To_Integer
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        long long int value = 0;
+        while(head!=NULL){
+            value = value*2 + head->val;
+            head = head->next;
+        }
+        return value;
+    }
+};
