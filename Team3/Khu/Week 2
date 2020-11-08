@@ -51,3 +51,43 @@ public:
 Q3. Palindrome LL
 
 //
+
+
+
+Q4. Intersection of Two LL
+
+//
+
+
+Q5. Middle of Linked List
+//https://leetcode.com/problems/middle-of-the-linked-list/submissions/
+
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        if(head==NULL)
+            return NULL;
+        
+        ListNode *fast,*slow;
+        fast=slow=head;
+        while(fast && fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+};
+
+
+
+Q6. Sort List
+//
+
+
+
+
+Q7.convert binary number in LL to integer
+
+//
