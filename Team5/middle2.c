@@ -54,3 +54,4 @@ int middle(int n,struct node*head){
 	return head->data;
 
 }
+
