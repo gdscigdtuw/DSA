@@ -48,13 +48,7 @@ public:
 };
 
 
-Q3. Palindrome LL
-
-//
-
-
-
-Q4. Intersection of Two LL
+Q3. Intersection of Two LL
 
 //https://leetcode.com/problems/intersection-of-two-linked-lists/
 
@@ -117,7 +111,7 @@ public:
 };
 
 
-Q5. Middle of Linked List
+Q4. Middle of Linked List
 //https://leetcode.com/problems/middle-of-the-linked-list/submissions/
 
 
@@ -139,9 +133,19 @@ public:
 };
 
 
+Q5. Palindrome LL
+//
+
+
+
+
 
 Q6. Sort List
 //
+
+
+
+
 
 
 
