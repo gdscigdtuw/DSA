@@ -65,3 +65,4 @@ void cycle(struct node*head){
 	else
 		printf("\nCyclicity is present\n");
 }
+
