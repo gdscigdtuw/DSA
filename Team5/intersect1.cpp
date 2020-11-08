@@ -71,3 +71,4 @@ int intersection(struct node*head1,struct node*head2,int n){
 	}
 	return flag;	
 }
+
