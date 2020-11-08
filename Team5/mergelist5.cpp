@@ -80,6 +80,9 @@ void sort(struct node*head){
 			}
 		}
 		start=start->next;
+
 	}
 }
+
+
 
