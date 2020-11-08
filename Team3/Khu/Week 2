@@ -56,7 +56,65 @@ Q3. Palindrome LL
 
 Q4. Intersection of Two LL
 
-//
+//https://leetcode.com/problems/intersection-of-two-linked-lists/
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        if(headA==NULL || headB==NULL)
+            return NULL;
+        
+        
+        int count1=0;
+        int count2=0;
+        ListNode *p,*q;
+        p=headA;
+        q=headB;
+        while(p)
+        {   count1++;
+            p=p->next;
+        }
+        p=headA;
+        while(q)
+        {
+            count2++;
+            q=q->next;
+        }
+        q=headB;
+        int diff=abs(count1-count2);
+        if(count2>count1)
+        {
+            for(int i=0;i<diff;i++)
+                q=q->next;
+            
+            while(p && q)
+            {   if(p==q)
+                    return p;
+                p=p->next;
+                q=q->next;
+                
+            }
+            
+        }
+        else
+        {
+            for(int i=0;i<diff;i++)
+                p=p->next;
+            while( p && q)
+            {   if(p==q)
+                    return p;
+                p=p->next;
+                q=q->next;
+                
+            }
+        }
+        
+      return NULL;  
+        
+        
+    }
+};
 
 
 Q5. Middle of Linked List
