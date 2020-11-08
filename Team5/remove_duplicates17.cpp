@@ -60,3 +60,5 @@ void duplicates(struct node* head){
 			start=start->next;
 	}
 }
+
+
