@@ -67,3 +67,4 @@ void palindrome(int n,struct node*head){
 	else
 		printf("\nNot a palindrome\n");
 }
+
