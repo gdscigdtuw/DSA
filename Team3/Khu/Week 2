@@ -132,18 +132,111 @@ public:
     }
 };
 
+Q5. Sort List
+//https://leetcode.com/problems/sort-list/
 
-Q5. Palindrome LL
+
+class Solution {
+public:
+   ListNode *mid_ele(ListNode *head,ListNode *tail)
+   {    if(head==tail)
+           return head;
+       ListNode *fast,*slow;
+       slow=head;
+        fast=head->next;
+        while(fast!=tail && fast->next!=tail)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+    return slow;
+   }
+    ListNode *mergetwo(ListNode *f_LL,ListNode *s_LL)
+    {
+        ListNode *third,*tail,*first,*second;
+        first=f_LL;
+        second=s_LL;
+        if(first->val<second->val)
+        {
+            third=tail=first;
+            first=first->next;
+            tail->next=NULL;
+        }
+        else
+        {
+            third=tail=second;
+            second=second->next;
+            tail->next=NULL;
+        }
+        while(first && second)
+        {
+            if(first->val<second->val)
+            {
+                tail->next=first;
+                tail=tail->next;
+                first=first->next;
+                tail->next=NULL;
+            }
+            else
+            {
+                tail->next=second;
+                tail=tail->next;
+                second=second->next;
+                tail->next=NULL;
+            }
+        }
+      if(first)
+      {
+          tail->next=first;
+      }
+        
+        if(second)
+        {
+            tail->next=second;
+        }
+        return third;
+        
+    }
+    
+    
+    ListNode *merge_sort(ListNode *head1,ListNode *head2)
+    {      
+        if( head1==head2)
+            {   ListNode *p;
+             p=new ListNode();
+                p->val=head1->val;
+           
+                p->next=NULL;
+             return p;
+                    }
+   
+     ListNode *mid=mid_ele(head1,head2);
+        ListNode *first=merge_sort(head1,mid);
+        ListNode *second=merge_sort(mid->next,head2);
+     ListNode * curr=mergetwo(first,second);
+     
+     return curr;
+    }
+    ListNode* sortList(ListNode* head) {
+        if(head==NULL)
+            return NULL;
+        ListNode *tail=head;
+        while(tail->next)
+        {
+            tail=tail->next;
+        }
+       
+        ListNode *final_LL=merge_sort(head,tail);
+        return final_LL;
+        
+        
+    }
+};
+
+
+
+Q6. Palindrome LL
 //
-
-
-
-
-
-Q6. Sort List
-//
-
-
 
 
 
