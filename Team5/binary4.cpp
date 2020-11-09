@@ -57,3 +57,6 @@ int binary(int n,struct node**head){
 	return sum;
 }
 
+
+
+
