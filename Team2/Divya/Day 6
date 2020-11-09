@@ -1,0 +1,386 @@
+Intersection of 2 LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+
+	int size(ListNode* head){
+		ListNode* temp= head;
+		int c= 0;
+		while(temp != NULL){
+			c++;
+			temp= temp->next;
+		}
+		return c;
+	}
+
+	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+		ListNode* temp1= headA;
+		ListNode* temp2= headB;
+
+		int diff= abs(size(headA) - size(headB));
+		if(size(headA) > size(headB)){
+			for(int i= 0; i< diff; i++)
+				temp1= temp1->next;
+		}
+		else{
+			for(int i= 0; i< diff; i++)
+				temp2= temp2->next;
+		}
+
+		while(temp1 != temp2){
+			temp1= temp1->next;
+			temp2= temp2->next;
+		}
+
+		return temp1;
+	}
+};
+
+
+Reverse LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* current=head;
+    ListNode *prev=NULL;
+        ListNode* nexxt;
+    while(current!=NULL){
+    nexxt = current->next;
+    current->next=prev;
+    prev=current;
+    current=nexxt;
+
+
+    }
+    head=prev;
+        return head;
+    }
+};
+
+Palindrome LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if ( !head || !head->next )
+            return true;
+        // Use fast and slow pointer. The slow pointer reverses the links. When the fast pointer
+        // reaches the end of the list, the slow pointer is halfway through. Since we're in the middle
+        // we can have one pointer traversing forwards and one pointer traversing backwards in the
+        // linked list, comparing for palindrom
+        
+        ListNode* prev = nullptr;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        ListNode* p1 = nullptr;
+        ListNode* p2 = nullptr;
+        
+        while ( true ) {
+            fast = fast->next;
+            if ( !fast ) {
+                // linked list is odd length
+                p1 = prev;
+                p2 = slow->next;
+                break;
+            }
+            
+			// Reverse the link
+            ListNode* new_slow = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = new_slow;
+            
+            fast = fast->next;
+            if ( !fast ) {
+                // linked list is even length
+                p1 = prev;
+                p2 = slow;
+                break;
+            }
+        }
+        
+        while ( p1 && p2 ) {
+            if ( p1->val != p2->val )
+                return false;
+            p1 = p1->next;
+            p2 = p2->next;
+        }
+        
+        return true;
+    }
+};
+
+Odd even LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if(!head||!(head->next))return head;
+        ListNode *t1=head;
+        ListNode *t2=head->next;
+        ListNode *t=t2;
+        ListNode *t3=t;
+        
+        while(t1&&t1->next&&t1->next->next)
+        {
+            t1->next=t2->next;
+            t1=t1->next;
+             t2=t1->next;
+            
+             t->next=t2;
+             t=t->next;
+           
+        }
+        cout<<t3->val;
+        t1->next=t3;
+        return head;
+        
+    }
+};
+
+Middle of LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+   ListNode* middleNode(ListNode *head)
+    {
+        // 3 steps
+        // 1 - find the length
+        // 2 - traverse until length / 2
+        // 3 - return current node
+
+        // special cases where head is empty or head has only one node
+        if (head == 0 or head->next == 0)
+            return head;
+        int count = 0;
+        ListNode *headRoot = head;
+        while (head != 0)
+        {
+            count++;
+            head = head->next;
+        }
+        head = headRoot;
+        for (int i = 0; i < (count / 2); i++)
+            head = head->next;
+        return head;
+    }};
+    
+    Sort list
+    
+    /**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    
+    ListNode * merge(ListNode * head1, ListNode * head2)
+    {
+        
+        ListNode * head = new ListNode (-1);
+        ListNode * curr = head;
+        
+        while (head1 != NULL and head2 != NULL)
+        {
+            
+            
+            if (head1 -> val <= head2 -> val)
+            {
+                curr -> next = head1;
+                head1 = head1 -> next;
+            }
+            else
+            {
+                curr -> next = head2;
+                head2 = head2 -> next;
+            }
+            
+            curr = curr -> next;
+        }
+        
+        if (head1)
+            curr -> next = head1;
+        else
+            curr -> next = head2;
+        return head -> next;;
+ 
+    }
+    
+    ListNode * middle (ListNode * head)
+    {
+        ListNode * slow = head;
+        ListNode * fast = head -> next;
+        while (fast != NULL and fast -> next != NULL)
+        {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+        
+        return slow;
+    }
+    
+  
+    ListNode* sortList(ListNode* head) {
+        
+        if (head == NULL || head -> next == NULL)
+            return head;
+        
+        ListNode * mid = middle(head);
+        ListNode * head2 = mid -> next;
+        mid -> next = NULL;
+        head = sortList(head);
+        head2 = sortList(head2);
+        return merge(head, head2);
+        
+        
+        
+    }
+};
+
+Binary in LL to integer
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    
+    /*
+    //algo is to store elements in stack and then iterate every element in stack and
+    //multiply with MSD starting from 0 and incrementing with every element
+    //for 101
+    //1*2^0=1
+    //0*2^1=0
+    //1*2^2=4
+    //ans = 5;
+    //Time: O(n) Space: O(n)
+    
+    int getDecimalValue(ListNode* head) {
+        
+        stack<int> list;
+        ListNode* iter=head;
+        int num=0;
+        while(iter)
+        {
+            list.push(iter->val);
+            iter=iter->next;
+        }
+        
+        int MSD=0;
+        while(!list.empty())
+        {
+            int digit = list.top();
+            num+=digit*pow(2,MSD);
+            MSD++;
+            list.pop();
+        }
+        return num;
+    }
+    */
+    
+    //second algo:
+    //find the length of the list: len
+    //start from -1 as the MSD is starting from 0 and len will give you num of elements in list
+    //in this way it will become the max MSD that is possible
+    //for e.g. 101 length = 3 and Max MSD pow is 2
+    //so start from 1* 2^2
+    //then 0 * 2^1
+    //and 1 * 2^0
+    //total = 5
+    int getDecimalValue(ListNode* head) {
+    
+        ListNode* iter=head;
+        int num=0;
+        int MSD=-1;
+        while(iter)
+        {
+            iter=iter->next;
+            MSD++;
+        }
+        
+        iter=head;
+        while(iter)
+        {
+            num+=(iter->val * pow(2,MSD));
+            MSD--;
+            iter=iter->next;
+        }
+        return num;
+    }
+    
+    
+};
