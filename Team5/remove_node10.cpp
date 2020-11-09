@@ -57,3 +57,6 @@ void deletion(int pos,int n,struct node*head){
 	head->next=(head->next)->next;
 }
 
+
+
+
