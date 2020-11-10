@@ -1,0 +1,24 @@
+class Solution 
+{
+    public:
+    ListNode* middleNode(ListNode* head) 
+    {
+        int count=0;
+        ListNode* temp=head;
+        while(temp!=NULL)
+        {
+            count++;
+            temp=temp->next;
+            
+        }
+        int mid=(count/2)+1;
+        ListNode* temp1=head;
+        for(int i=0;i<mid-1;i++)
+        {
+            temp1=temp1->next;
+        }
+        head=temp1;  
+        return head;
+    }
+   
+};
