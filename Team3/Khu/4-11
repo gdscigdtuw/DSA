@@ -1,0 +1,185 @@
+Q1. Remove Nth node from end of list
+
+//https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *fast,*slow;
+        fast=slow=head;
+        int count=0;
+        if(fast->next==NULL)
+        {
+            return NULL;
+        }
+       while(fast)
+       {
+           count++;
+           fast=fast->next;
+       }
+        
+        fast=head;
+        
+        if(n<count)
+        {  for(int i=0;i<n && fast;i++)
+        {   
+            fast=fast->next;
+        }
+        
+        while(fast!=NULL)
+        {
+            //cout<<fast->val<<" "<<slow->val<<endl;
+            fast=fast->next;
+            if(fast)
+             slow=slow->next;
+        }
+      //  cout<<slow->val;
+        
+        slow->next=slow->next->next;
+        }
+        
+        else
+        {
+            head=slow->next;
+        }
+          
+        return head;
+    }
+};
+
+Q2. Merge two sorted lists
+
+//https://leetcode.com/problems/merge-two-sorted-lists/
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        
+        ListNode *first,*second,*third,*tail;
+        first=l1;
+        second=l2;
+        
+        if(first==NULL && second==NULL)
+            return NULL;
+        
+        if(first==NULL && second)
+        {
+            return second;
+        }
+        else if(second==NULL && first)
+            return first;
+        
+     if(first && second && first->val<second->val )
+     {  
+         third=tail=first;
+         first=first->next;
+       // cout<<third->val;
+     }
+    else  if(first && second && second->val<=first->val)
+        {   
+            third=tail=second;
+            second=second->next;
+           
+        }
+        
+        while(first && second)
+        {
+            if(first->val<second->val)
+            {
+                tail->next=first;
+                tail=first;
+                first=first->next;
+                
+            }
+            
+            else
+            {
+                tail->next=second;
+                tail=second;
+                second=second->next;
+               
+            }
+        }
+        
+        if(first!=NULL)
+        { tail->next=first;
+         tail=first;
+         first=first->next;
+        }
+        if(second!=NULL)
+        { tail->next=second;
+         tail=second;
+         second=second->next;
+        }
+        return third;
+    }
+};
+
+Q3. Linked List Cycle
+//https://leetcode.com/problems/linked-list-cycle/
+
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        
+        ListNode *p,*q;
+        p=q=head;
+        if(p==NULL)
+            return false;
+        
+        do
+        {
+            p=p->next;
+            q=q->next;
+            q=q!=NULL ?q->next:NULL;
+        }while(p && q && p!=q);
+        
+        
+        return p==q && p && q? true:false;
+        
+    }
+};
+
+Q4. Remove duplicates from sorted list
+//https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        
+        if(head==NULL)
+            return NULL;
+        ListNode *fast,*slow;
+        slow=head;
+        fast=slow->next;
+        while(fast)
+        {
+            if(slow->val==fast->val)
+            {
+                slow->next=fast->next;
+                fast=fast->next;
+                
+            }
+            else
+            {
+                slow=fast;
+                fast=fast->next;
+            }
+            
+            
+        }
+        
+        
+      return head;  
+        
+    }
+};
+
+
+
+
+
+
+
