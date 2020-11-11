@@ -1,0 +1,23 @@
+class Solution
+{
+    public:
+    ListNode* oddEvenList(ListNode* head) 
+    {
+        if(!head)
+        {
+            return head;
+        }
+        ListNode* sH = head->next;
+        ListNode* fC = head;
+        ListNode* sC = sH;
+        while(sC && sC->next)
+        {
+            fC->next = sC->next;
+            fC = fC->next;
+            sC->next = fC->next;
+            sC = sC->next;
+        }
+        fC->next = sH;
+        return head;
+    }
+};

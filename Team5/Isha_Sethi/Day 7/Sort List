@@ -1,0 +1,22 @@
+class Solution 
+{
+    public:
+    ListNode* sortList(ListNode* head) 
+    {
+        vector<int> list;
+        ListNode* ptr = head;
+        while (ptr)
+        {
+            list.push_back(ptr->val);
+            ptr = ptr->next;
+        }
+        sort(list.begin(), list.end());
+        ptr = head;
+        for (auto val:list)
+        {
+            ptr->val = val;
+            ptr = ptr->next;
+        }
+        return head;
+    }
+};
