@@ -1,0 +1,244 @@
+Daily questions for 4/11
+
+Q-Remove Nth from end of List: https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* temp=head;
+        int c=1;
+        while(temp->next!=NULL )
+        {temp=temp->next;
+         c++;
+        }
+        if(c==1)
+        {delete head;
+        return NULL;}
+        if(n<c)
+        {ListNode* help=head;
+        for(int i=1;i<=c-n-1;i++)
+        {help=help->next;}
+         ListNode* h=help->next;
+         help->next=help->next->next;
+        delete h;
+        }
+        if(c==n)
+        {ListNode* s=head;
+         head=head->next;
+         delete s;
+        }
+        return head;
+    }
+};
+
+
+Q-Merge Two Sorted lists: https://leetcode.com/problems/merge-two-sorted-lists/
+A-
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if(!l1)
+            return l2;
+        if(!l2)
+            return l1;
+        if(l1->val<l2->val){
+            l1->next = mergeTwoLists(l1->next, l2); 
+        return l1; 
+    } 
+    else { 
+        l2->next = mergeTwoLists(l1, l2->next); 
+        return l2;
+    }
+        }
+    
+};
+
+Q-Remove Duplicates from Sorted List: https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* temp=head;
+        while(head!=NULL && temp->next!=NULL)
+        {if(temp->val != temp->next->val)
+           temp=temp->next;
+         else
+          {ListNode* h=temp->next;
+           temp->next=h->next;
+           delete h;}
+         }
+        return head;
+        
+    }
+};
+
+
+Q-Linked List Cycle: https://leetcode.com/problems/linked-list-cycle/
+A-
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head == NULL)
+            return false;
+       ListNode* slow=head;
+        ListNode* fast=head->next;
+        
+         while(slow!=fast)
+         {   if(fast==NULL || fast->next==NULL)
+             return false;
+         
+             fast=fast->next->next;
+             slow=slow->next;
+         }
+         return true;
+        
+    }
+};
+
+
+Final Questions for the Week
+
+Intersection of Two LL: https://leetcode.com/problems/intersection-of-two-linked-lists/
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA==NULL|| headB==NULL)
+            return NULL;
+        ListNode* tempA = headA;
+        ListNode* tempB = headB;
+        int A=1;
+        int B=1;
+        while(tempA->next!=NULL)
+        {   tempA=tempA->next;
+            A++;
+        }
+        while(tempB->next!=NULL)
+        {   tempB=tempB->next;
+            B++;
+        }
+         tempB = headA;
+         tempA = headB;
+        if(A>B)
+        {
+         for(int i=0;i<A-B;i++)
+             tempB=tempB->next;
+        }
+        else if(B>A)
+        {
+          for(int i=0;i<B-A;i++)
+             tempA=tempA->next;
+        }
+        while(tempA!=NULL && tempB!=NULL)
+        {if(tempA==tempB)
+            return tempA;
+         else
+          tempA=tempA->next;
+          tempB=tempB->next;
+        }
+        return NULL;
+        
+        
+    }
+};
+
+
+Reverse Linked List: https://leetcode.com/problems/reverse-linked-list/
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* cur=head;
+        while(cur!=NULL)
+        {   ListNode* temp=cur->next;
+            cur->next=prev;
+            prev=cur;
+            cur=temp;
+        }
+        return prev;
+    }
+};
+
+
+Palindrome LL: https://leetcode.com/problems/palindrome-linked-list/
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+       
+        stack<int>s;ListNode* help=head;
+        while( help!=NULL)
+        {s.push(help->val);
+         help=help->next;}
+
+         ListNode* hell=head;
+        while(!s.empty())
+        {
+            if(hell->val!=s.top())
+            { return false;}
+            else
+            {s.pop();
+             hell=hell->next;}
+        }
+        return true;
+        
+    }
+};
+
+
+Odd Even LL: https://leetcode.com/problems/odd-even-linked-list/
+
+
+Middle of Linked List: https://leetcode.com/problems/middle-of-the-linked-list/
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        if(head==NULL)
+            return NULL;
+        ListNode* temp= head;
+        int c=0;
+        while(temp->next!=NULL)
+        {temp=temp->next;
+         c++;
+        }
+        if(c%2!=0)
+            c=(c/2)+1;
+        else
+            c=c/2;
+        ListNode* tp= head;
+        for(int i=0;i<c;i++)
+        {
+            tp=tp->next;
+        }
+        head=tp;
+        return head;
+        
+    }
+};
+
+
+Sort List: https://leetcode.com/problems/sort-list/
+
+
+Convert Binary number in LL to integer: https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        if(head==NULL)
+            return 0;
+        else if(head->next==NULL)
+            return head->val;
+        ListNode* temp=head;
+        stack<int>s;
+        while(temp!=NULL)
+        {
+            s.push(temp->val);
+            temp=temp->next;
+        }
+        int sum=0;int i=0;
+        while(!s.empty())
+        { 
+          sum=sum+(s.top()*pow(2,i));
+          s.pop();
+          i++;
+        }
+        return sum;
+        
+    }
+};
