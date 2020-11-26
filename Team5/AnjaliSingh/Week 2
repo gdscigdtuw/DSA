@@ -1,0 +1,410 @@
+//Remove_Nth_Node_From_End_Of_List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *temp=head,*slow=head;
+        if(!head->next)
+            return NULL;
+        while(n>0){
+           temp=temp->next;
+            n--;
+        }
+        if(temp==NULL)
+            return head->next;
+        while(temp->next!=NULL){
+            temp=temp->next;
+            slow=slow->next;
+        }
+        slow->next=slow->next->next;
+        return head;  
+    }
+};
+
+//Merge_Two_Sorted_Lists
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        
+        ListNode* l3;
+        
+        if(l1==NULL) 
+            return l2;
+        else if(l2==NULL) 
+            return l1;
+        
+        if(l1->val < l2->val)
+        {
+            l3 = l1;
+            l3->next = mergeTwoLists(l1->next,l2);
+        } 
+        else
+        {
+            l3 = l2;
+            l3->next = mergeTwoLists(l1,l2->next);
+        }
+        return l3;
+    }
+};
+
+//Remove_Duplicates_From_Sorted_List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode *prev=head,*next;
+ 
+        if(!head)
+            return NULL;
+        else
+            next = head->next;
+ 
+        while(next!=NULL)
+        {
+            if(prev->val != next->val)
+            {
+                prev = next;
+                next = next->next;
+            }
+            else
+            {
+                prev->next = next->next;
+                delete next;
+                next = prev->next;
+            }
+        }
+        return head;
+        }
+};
+
+//Linked_List_Cycle
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) 
+    {
+        ListNode *fast, *slow;
+        fast = slow = head;
+        while (fast != NULL && slow != NULL)
+        {
+            if (fast->next != NULL)     
+                fast = fast->next->next;
+            else    
+                fast = NULL;
+            slow = slow->next;
+            if (fast != NULL && fast == slow)   
+                return true;
+        }
+        return false;
+    }
+};
+        
+//Intersection_Of_Two_LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public: 
+    
+    int getLength(ListNode *head){
+        
+        int len = 0;
+        while(head)
+        {
+            head=head->next;
+            len++;
+        }
+        return len;
+    }
+    
+    ListNode* intersectAt(int d, ListNode *headA, ListNode *headB){
+        
+        while(d-->0)
+            headA = headA->next;
+        
+        while(headA && headB)
+        {
+            if(headA == headB)return headA;
+            headA = headA->next;
+            headB = headB->next;
+        }
+        return NULL;
+    }
+    
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        if(headA == NULL || headB == NULL)return NULL;
+        ListNode *result = NULL;
+        int l1 = getLength(headA);
+        int l2 = getLength(headB);
+        
+        if(l1>l2)
+            result = intersectAt(l1-l2, headA, headB);
+        else
+            result = intersectAt(l2-l1, headB, headA);
+        return result;
+    }
+};
+
+//Reverse_Linked_List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) 
+    {
+        ListNode* curr = head;
+        ListNode* prev = NULL;
+        ListNode* next = NULL;
+        while(curr != NULL)
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;        
+    }
+};
+
+//Palindrome_LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverse(ListNode* l)
+    {
+        ListNode *curr = l;
+        ListNode *next = NULL;
+        ListNode * prev = NULL;
+        
+        while(curr){
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+    
+    int getLength(ListNode* l){
+        ListNode *ptr = l;
+        int length = 0;
+        while(ptr){
+            length ++;
+            ptr = ptr->next;
+        }
+        return length;
+    }
+    
+    bool isPalindrome(ListNode* head) {
+        
+        int length = getLength(head);
+        if(length < 2)
+            return true;
+        int middle = length % 2 ? ceil(length/2) + 1 : length / 2;
+        
+        ListNode *middle_ptr = head;
+        ListNode *head_ptr = head;
+        while(middle){
+            middle --;
+            middle_ptr = middle_ptr->next;
+        }
+        middle_ptr = reverse(middle_ptr);
+        while(middle_ptr){
+            if(middle_ptr->val != head_ptr->val)
+                return false;
+            middle_ptr = middle_ptr->next;
+            head_ptr = head_ptr->next;
+        }
+        return true;
+    }
+};
+
+//Odd_Even_LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    
+    ListNode* oddEvenList(ListNode* head) {
+        if(head==NULL || head->next==NULL)return head;
+        ListNode *p1,*p2,*head1,*head2;
+        head1=p1=head;
+        head2=p2=head->next;
+        int cnt=1;
+        while(p1 && p2)
+        {
+            if(cnt%2!=0)
+            {
+                p1->next=p2->next;
+                p1=p1->next;
+            }
+            else
+            {
+                p2->next=p1->next;
+                p2=p2->next;
+            }
+            cnt++;
+        }
+        p1=head1;
+        while(p1->next)p1=p1->next;
+        p1->next=head2;
+        return head1;   
+    }
+};
+
+//Middle_of_Linked_List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) 
+    {
+        ListNode* one = head; 
+        ListNode* two = head; 
+        while(two != NULL && two->next != NULL)
+        {
+            two = two->next->next;
+            one = one->next;
+        }
+        return one;
+    }
+};
+
+//Sort_List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if (head == NULL) return NULL;
+        vector<int> data;
+        ListNode *p = head;
+        while (p) {
+            data.push_back(p->val);
+            p = p->next;
+        }
+        sort(begin(data), end(data));
+        p = head;
+        for (const auto &n: data) {
+            p->val = n;
+            p = p->next;
+        }
+        return head;  
+    }
+};
+
+//Convert_Binary_Number_In_A_Linked_List_To_Integer
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        long long int value = 0;
+        while(head!=NULL){
+            value = value*2 + head->val;
+            head = head->next;
+        }
+        return value;
+    }
+};
