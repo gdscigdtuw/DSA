@@ -1,0 +1,63 @@
+1. Rotate array
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        
+   ::rotate(nums.begin(),nums.begin()+(nums.size()-(k%nums.size())),nums.end());
+    }
+};
+
+
+
+2. Count negative no
+
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+       
+int res=0;
+int i=0;
+int x=grid.size();
+int j=grid[0].size()-1;
+while(i<x&&j>=0)
+{
+if(grid[i][j]>=0)
+i++;
+else
+{
+res=res+x-i;
+j--;
+}
+
+        }
+    return res;    
+}
+};
+
+
+3. Maximum subarray
+
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& arr) {
+        int a=arr.size();
+        int max=arr[0];
+        int dp[a];
+        dp[0]=arr[0];
+        for(int i=1;i<a;i++){
+            if(dp[i-1]>0){
+                dp[i]=dp[i-1]+arr[i];
+            }
+            else{
+                dp[i]=arr[i];
+            }
+            if(dp[i]>max){
+                max=dp[i];
+            }
+        }
+        return max;
+    }
+};
+
