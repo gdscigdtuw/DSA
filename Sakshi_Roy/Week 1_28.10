@@ -1,0 +1,80 @@
+// Moving Zeroes
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+       int count=0,n=nums.size();
+        for(int i=0;i<n;i++)
+            if(nums[i]!=0)
+                nums[count++]=nums[i];
+        
+        while(count<n)
+        nums[count++]=0;
+        
+        for(int i=0;i<n;i++)
+            cout<<nums[i]<<" ";
+    }
+};
+
+//Pivot Index
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+          int n=nums.size();
+    int sum=0;
+    for(int i=0;i<n;i++)
+    {
+        sum+=nums[i];
+    }
+    int left=0;
+    for(int i=0;i<n;i++)
+    {
+        sum-=nums[i];
+        if(sum==left)
+            return i;
+        left+=nums[i];
+    }
+    return -1;
+    }
+};
+
+//Product of array except self
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+         int n = nums.size();
+        
+        vector<int> output(n, 1);
+        
+        for(int i = 1; i < n; i++){
+            output[i] = nums[i-1] * output[i-1];
+        }
+        
+        int right_product = 1;
+        
+        for(int i = n -1 ; i >= 0; i--){
+            output[i] = output[i] * right_product;
+            right_product *= nums[i];
+        }
+        
+        return output;
+    }
+};
+
+//Monotonic Array
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+        int i,n;
+        bool inc=true,dec=true;
+        n=A.size();
+            for (int i = 0; i < n-1; ++i) 
+            {
+            if (A[i] > A[i+1])
+                inc = false;
+            if (A[i] < A[i+1])
+                dec = false;
+            }
+    
+        return (inc||dec);
+    }
+};
