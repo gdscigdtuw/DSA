@@ -1,0 +1,32 @@
+class Solution
+{
+    public:
+    int list_length(ListNode* rt)
+    {
+        int res = 0;
+        if(!rt) return res;
+        while(rt)
+        {
+            res++;
+            rt = rt->next;
+        }
+        return res;
+    }
+    ListNode *getIntersectionNode(ListNode *hA, ListNode *hB) 
+    {
+        int a = list_length(hA), b = list_length(hB);
+        if(a < b)
+            swap(hA, hB);
+        int diff = abs(a - b);
+        while(diff--)
+        {
+            hA = hA->next;
+        }
+        while(hA != hB)
+        {
+            hA = hA->next;
+            hB = hB->next;
+        }
+        return hA;
+    }
+};

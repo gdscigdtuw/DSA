@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+       if(nums.empty()) 
+        return 0;
+        
+        int n=nums.size(), p=1, k=nums[0];   
+        
+        if(n<2)
+        return n;
+        
+        for(int i=1; i<n; i++) {
+            if(nums[i]==k)
+                continue;
+            else {
+                nums[p]=nums[i];
+                p=p+1;
+                k=nums[i];
+            }
+        }
+        
+        p= n-p;
+        while(p--) {
+            nums.pop_back();
+        }
+        
+        return nums.size(); 
+    }
+};

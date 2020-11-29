@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int size=nums.size();
+      size=size&1?size*((size+1)/2):(size+1)*(size/2);
+      for(int i:nums)
+        size-=i;
+      return size;
+     
+    }
+};

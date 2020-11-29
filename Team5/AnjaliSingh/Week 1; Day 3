@@ -1,0 +1,84 @@
+//Move_Zeroes
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& A) {
+        int i,n,c,j=0;
+        vector<int> B;
+        n=A.size();
+        for(i=0;i<n;i++)
+        {
+            if(A[i]!=0)
+            {
+                A[j]=A[i];
+                j++;
+            }
+        }
+        for(c=j;c<n;c++)
+            A[c]=0;
+        for(c=0;c<n;c++)
+            cout<<"\t"<<A[c];
+    }
+};
+
+//Pivot_Index
+
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int i,n,sum=0,lsum=0;
+        n=nums.size();
+        for(i=0;i<n;i++)
+            sum=sum+nums[i];
+        for(i=0;i<n;i++)
+        {
+            if(lsum==((sum-lsum)-nums[i]))
+                return i;
+            else
+                lsum=lsum+nums[i];
+        }
+        return -1;
+    }
+};
+
+//Product_Except_Itself
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int i,n,j,x=0,c=1;
+        vector<int> arr;
+        n=nums.size();
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {    
+                if(i!=j)
+                    c=c*nums[j];
+            }
+            arr.push_back(c);
+            c=1;
+        }
+        return arr;
+    }
+};
+
+//Monotonic
+
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+        int i,n;
+        bool inc=true,dec=true;
+        n=A.size();
+            for (int i = 0; i < n-1; ++i) 
+            {
+            if (A[i] > A[i+1])
+                inc = false;
+            if (A[i] < A[i+1])
+                dec = false;
+            }
+    
+        return (inc||dec);
+    }
+};

@@ -1,0 +1,91 @@
+Q1. SPIRAL MATRIX 
+https://leetcode.com/problems/spiral-matrix/
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+   vector<int>result;
+     int m,n;
+        m=matrix.size();
+       if(m==0)
+           return result;
+        n=matrix[0].size();
+      // cout<<m<<" "<<n<<endl;
+        int i;
+        int k=0,last_row=m-1,l=0,last_col=n-1;
+        
+        while(k<=last_row && l<=last_col)
+        {
+            for(i=l;i<=last_col;i++)
+                result.push_back(matrix[k][i]);
+            k++;
+            for(i=k;i<=last_row;i++)
+                result.push_back(matrix[i][last_col]);
+            last_col--;
+            
+            if(k<=last_row)
+            {for(i=last_col;i>=l;i--)
+                result.push_back(matrix[last_row][i]);
+            
+             last_row--;}
+            if(l<=last_col)
+            {for(i=last_row;i>=k;i--)
+                result.push_back(matrix[i][l]);
+            
+             l++;
+            }
+        }
+      return result;  
+        
+    }
+};
+
+
+Q2.REMOVE DUPLICATES FROM SORTED ARRAY
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+            
+        for(int i=1;i<nums.size();i++)
+        {  // cout<<i<<" "<<nums[i]<<" "<<endl;
+            if(nums[i]==nums[i-1])
+            { nums.erase(nums.begin()+i);
+             i--;
+            }
+        }
+        return nums.size();
+        
+    }
+};
+
+
+
+Q3. MISSING NUMBER IN AN ARRAY
+https://leetcode.com/problems/missing-number/
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int size=nums.size();
+            sort(nums.begin(),nums.end());
+    
+      //  if(nums[0]==size-1 && size==1) return nums[0]+1;  
+        int i;
+   for( i=0;i<size;i++)
+       
+   {    
+       { if(nums[i]!=i)
+          return i;
+       }
+       
+   }
+             
+     return i;
+    }   
+};
+
+
+
+

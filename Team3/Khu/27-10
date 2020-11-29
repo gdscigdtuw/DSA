@@ -1,0 +1,124 @@
+Q1. Maximum Subarray
+//https://leetcode.com/problems/maximum-subarray/
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        
+        int max_,curr;
+        max_=curr=nums[0];
+        
+        for(int i=1;i<nums.size();i++)
+        {
+            if(curr>=0)
+                curr+=nums[i];
+            else if(curr<0)
+                curr=nums[i];
+            
+            if(curr>=max_)
+                max_=curr;
+           cout<<curr<<" "<<max_<<endl; 
+        }
+        return max_;
+        
+        
+        
+    }
+};
+
+
+Q2. Sieve of Eratosthenes
+//https://practice.geeksforgeeks.org/problems/sieve-of-eratosthenes5242/1
+
+class Solution
+{
+public:
+    vector<int> sieveOfEratosthenes(int N)
+    {   vector<int>result;
+        int count;
+        for(int i=2;i<=N;i++)
+        {   count=0;
+            for(int j=2;j*j<=i;j++)
+            {   //cout<<"in loop"<<" "<<i<<","<<j<<":"<<i%j<<endl;
+                if(i%j ==0 && i!=j)
+                    {count++;
+                    break;
+                    }
+            }
+            if(count==0)
+                result.push_back(i);
+            
+        }
+        
+     return result;   
+        
+        
+        
+    }
+};
+
+
+Q3. Count negative numbers
+//https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
+
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int count=0;
+        
+        int m=grid.size();
+        int n=grid[0].size();
+        
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(grid[i][j]<0)
+                    count++;
+            }
+        }
+        return count;
+        
+        
+    }
+};
+
+Q4. Rotate array
+//https://leetcode.com/problems/rotate-array/
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if(k<=0 || nums.size()==1)
+            return;
+        
+        int size=nums.size();
+        vector<int>temp;
+      if(k<=size)
+      {         while(k )
+                 {  // cout<<nums[size-k]<<" ";
+            
+            temp.push_back(nums[size-k]);
+            nums.pop_back();
+           
+            k--;
+        }
+    nums.insert(nums.begin(),temp.begin(),temp.end());
+        
+      }
+     else
+     {
+          while(k)
+        {
+            int last_indx=nums.size();
+            int ele=nums[last_indx-1];
+            for(int p=last_indx-2;p>=0;p--)
+                nums[p+1]=nums[p];
+               cout<<ele<<" "; 
+            nums[0]=ele;
+           k--; 
+        }
+     } 
+        
+    }
+};

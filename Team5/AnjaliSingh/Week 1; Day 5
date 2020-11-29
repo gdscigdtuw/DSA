@@ -1,0 +1,89 @@
+//Count_and_Say
+
+string countAndSay(int n) {
+        if(n==1)
+            return "1";
+      
+        string temp=countAndSay(n-1);  //first get the result of n-1 number
+         
+        
+        int index=1;
+        int len=temp.length();
+        char temp1=temp[0];
+        int count=1;
+        string ans="";
+        while(index<len)
+        {
+            if(temp[index]==temp1)  //match the current index with previous
+                count++;
+            else
+            {                        //if not equal then update the ans string
+            	string s(1,temp1);
+                ans+=to_string(count)+s;
+                count=1;
+                temp1=temp[index];
+            }
+            index++;
+        }
+        string num=to_string(count);
+        string s1(1,temp1);
+       ans+=num+s1;
+        return ans;
+    }
+};
+
+//Reverse_Only_Letters
+
+class Solution {
+public:
+        bool isString(char a)
+        {
+            if((a>=65&&a<=90) || (a>=97&&a<=122))
+                return true;
+        return false;
+        }
+        string reverseOnlyLetters(string s)
+        {
+            int i=0,j=s.size()-1;
+            while(i<j)
+            {
+                if(isString(s[i]) && isString(s[j]))
+                {
+                    char tmp=s[i];
+                    s[i]=s[j];
+                    s[j]=tmp;
+                    i++;
+                    j--;
+                }
+                else if(!isString(s[i]))
+                    i++;
+                else if(!isString(s[j]))
+                    j--;
+            }  
+            return s;
+        }
+};
+
+//Longest_Substring_Without_Repeating_Characters
+
+int lengthOfLongestSubstring(string s) {
+       int exist[CHAR_MAX];
+        for(int i = 0; i < CHAR_MAX; i++)
+            exist[i] = -1;
+        
+        size_t s_len = s.length();
+        int max_len = 0;
+        int start = 0;
+        // sliding window
+        for(int i = 0; i < s_len; i++) {
+            // first occurrance
+            if(exist[s[i]] == -1)
+                exist[s[i]] = i;
+            // occur before
+            else {
+                start = max(exist[s[i]] + 1, start);
+                exist[s[i]] = i;
+            }
+            max_len = max(max_len, i-start+1);
+        }
+        return max_len;}

@@ -1,0 +1,80 @@
+Question 1 
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+Code
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n=nums.size();
+        int total=(n*(n+1))/2;
+        for (int i = 0; i < n; i++)
+            total -= nums[i];
+         return total;
+
+    }
+};
+
+Question 2
+Given a sorted array nums, remove the duplicates in-place such that each element appears only once and returns the new length.
+
+Code
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n=nums.size();
+         if (n == 0) 
+             return 0;
+         int i = 0;
+        for (int j = 1; j < n; j++) {
+           if (nums[j] != nums[i]) {
+            i++;
+            nums[i] = nums[j];
+           }
+        }
+    return i + 1;
+    }
+};
+
+Question 3
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+
+Code
+class Solution {
+public:
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+  int m = matrix.size();
+        int n =m ? matrix[0].size() :0;
+        int up = 0, down = m - 1, left = 0, right = n - 1, p = 0;
+        vector<int> M(m * n);
+        while (up <= down && left <= right) {
+            for (int col = left; col <= right; col++) {
+                M[p++] = matrix[up][col];
+            }
+            if (++up > down) {
+                break;
+            }
+            for (int row = up; row <= down; row++) {
+                M[p++] = matrix[row][right];
+            }
+            if (--right < left) {
+                break;
+            }
+            for (int col = right; col >= left; col--) {
+                M[p++] = matrix[down][col];
+            }
+            if (--down < up) {
+                break;
+            }
+            for (int row = down; row >= up; row--) {
+                M[p++] = matrix[row][left];
+            }
+            if (left++ > right) {
+                break;
+            }
+        }
+        return M;
+    }
+
+    };
+    
+    

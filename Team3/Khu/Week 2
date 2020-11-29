@@ -1,0 +1,237 @@
+Q1. Odd Even LL
+https://leetcode.com/problems/odd-even-linked-list/
+
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if(head==NULL)
+            return nullptr;
+        
+        ListNode *odd,*even,*oh,*eh;
+        oh=odd=head;
+        eh=even=head->next;
+        while(even && even->next)
+        {  
+        odd->next=odd->next->next;
+            even->next=even->next->next;
+            odd=odd->next;
+            even=even->next;
+        
+        }
+        odd->next=eh;
+        return head;
+    }
+};
+
+Q2.Reverse Linked List
+//https://leetcode.com/problems/reverse-linked-list/
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        
+        ListNode *r,*q,*p;
+        r=q=NULL;
+        p=head;
+        while(p)
+        {
+            r=q;
+            q=p;
+            p=p->next;
+            q->next=r;
+            
+        }
+        head=q;
+        
+        return head;
+    }
+};
+
+
+Q3. Intersection of Two LL
+
+//https://leetcode.com/problems/intersection-of-two-linked-lists/
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        if(headA==NULL || headB==NULL)
+            return NULL;
+        
+        
+        int count1=0;
+        int count2=0;
+        ListNode *p,*q;
+        p=headA;
+        q=headB;
+        while(p)
+        {   count1++;
+            p=p->next;
+        }
+        p=headA;
+        while(q)
+        {
+            count2++;
+            q=q->next;
+        }
+        q=headB;
+        int diff=abs(count1-count2);
+        if(count2>count1)
+        {
+            for(int i=0;i<diff;i++)
+                q=q->next;
+            
+            while(p && q)
+            {   if(p==q)
+                    return p;
+                p=p->next;
+                q=q->next;
+                
+            }
+            
+        }
+        else
+        {
+            for(int i=0;i<diff;i++)
+                p=p->next;
+            while( p && q)
+            {   if(p==q)
+                    return p;
+                p=p->next;
+                q=q->next;
+                
+            }
+        }
+        
+      return NULL;  
+        
+        
+    }
+};
+
+
+Q4. Middle of Linked List
+//https://leetcode.com/problems/middle-of-the-linked-list/submissions/
+
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        if(head==NULL)
+            return NULL;
+        
+        ListNode *fast,*slow;
+        fast=slow=head;
+        while(fast && fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+};
+
+Q5. Sort List
+//https://leetcode.com/problems/sort-list/
+
+
+class Solution {
+public:
+   ListNode *mid_ele(ListNode *head,ListNode *tail)
+   {    if(head==tail)
+           return head;
+       ListNode *fast,*slow;
+       slow=head;
+        fast=head->next;
+        while(fast!=tail && fast->next!=tail)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+    return slow;
+   }
+    ListNode *mergetwo(ListNode *f_LL,ListNode *s_LL)
+    {
+        ListNode *third,*tail,*first,*second;
+        first=f_LL;
+        second=s_LL;
+        if(first->val<second->val)
+        {
+            third=tail=first;
+            first=first->next;
+            tail->next=NULL;
+        }
+        else
+        {
+            third=tail=second;
+            second=second->next;
+            tail->next=NULL;
+        }
+        while(first && second)
+        {
+            if(first->val<second->val)
+            {
+                tail->next=first;
+                tail=tail->next;
+                first=first->next;
+                tail->next=NULL;
+            }
+            else
+            {
+                tail->next=second;
+                tail=tail->next;
+                second=second->next;
+                tail->next=NULL;
+            }
+        }
+      if(first)
+      {
+          tail->next=first;
+      }
+        
+        if(second)
+        {
+            tail->next=second;
+        }
+        return third;
+        
+    }
+    
+    
+    ListNode *merge_sort(ListNode *head1,ListNode *head2)
+    {      
+        if( head1==head2)
+            {   ListNode *p;
+             p=new ListNode();
+                p->val=head1->val;
+           
+                p->next=NULL;
+             return p;
+                    }
+   
+     ListNode *mid=mid_ele(head1,head2);
+        ListNode *first=merge_sort(head1,mid);
+        ListNode *second=merge_sort(mid->next,head2);
+     ListNode * curr=mergetwo(first,second);
+     
+     return curr;
+    }
+    ListNode* sortList(ListNode* head) {
+        if(head==NULL)
+            return NULL;
+        ListNode *tail=head;
+        while(tail->next)
+        {
+            tail=tail->next;
+        }
+       
+        ListNode *final_LL=merge_sort(head,tail);
+        return final_LL;
+        
+        
+    }
+};
+
+
+
