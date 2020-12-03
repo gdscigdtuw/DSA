@@ -1,0 +1,93 @@
+Question1 :- Missing number in array
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+          int missingno = 0;
+        int n = nums.size();
+        //sort(nums.begin(),nums.end());
+        for(int i=0; i<nums.size(); i++){
+           missingno = missingno^i^nums[i];
+     }   
+        return missingno^n;
+    }
+};
+Question2 :- Remove duplicates from Sorted Array
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int size = nums.size();
+        int count=0;
+        int i=0,j=1;
+        while(j<nums.size()){
+            if(nums[i]==nums[j]){
+                j++;
+                count++;
+                continue;
+            }
+            else{
+              nums.erase(nums.begin()+i+1,nums.begin()+j); 
+              size = size - count;
+              i++;
+              j = j-count+1;
+              count = 0;
+            }
+        }
+        if(count!=0){
+            nums.erase(nums.begin()+i+1,nums.begin()+j);
+            size = size - count;
+        }
+        return size;
+    }
+};
+Question :- Maximum Subarray
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int currsum = 0;
+        int maxsum = INT_MIN;
+        for(int i=0; i<nums.size(); i++){
+            currsum += nums[i];
+             if(currsum > maxsum)
+                maxsum = currsum;
+            if(currsum < 0)
+                currsum = 0;
+        }
+        return maxsum;
+    }
+};
+Question :- Spiral Matrix
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> ans;
+        int row = matrix.size(), column = matrix[0].size();
+        if(matrix.size()==0){
+            return ans;
+        }
+        int ru = 0, rd = row-1;
+        int cl = 0, cr = column-1;
+        while((ru <= rd) && (cl <= cr)){
+            for(int j = cl; j<= cr; j++){
+                ans.push_back(matrix[ru][j]);
+            }
+            ru++;
+            for(int i = ru; i <= rd; i++){
+                ans.push_back(matrix[i][cr]);
+            }
+            cr--;
+            while(ru < rd){
+                for(int j = cr; j>=cl; j--){
+                    ans.push_back(matrix[rd][j]);
+                }
+                rd--;
+            }
+            while(cl < cr){
+                for(int i = rd; i >= ru; i--){
+                    ans.push_back(matrix[i][cl]);
+                }
+                cl++;
+            }
+        }
+        return ans;
+    }
+};
