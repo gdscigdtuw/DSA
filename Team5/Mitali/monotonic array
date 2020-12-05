@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+        int n=A.size();
+        //mon inc
+        int i=0;
+       while((i+1)<n){
+            if(A[i]<=A[i+1]){
+                i++;
+            }
+           else{
+               break;
+           }
+        }
+        if(i==n-1){
+            return true;
+        }
+        i=0;
+        while((i+1)<n){
+            if(A[i]>=A[i+1]){
+                i++;
+            }
+           else{
+               break;
+           }
+        }
+        if(i==n-1){
+            return true;
+        }
+        return false;
+        
+   }
+};

@@ -1,0 +1,21 @@
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if(l1==NULL){
+            return l2;
+        }
+        if(l2==NULL){
+            return l1;
+        }
+        ListNode* a;
+        if(l1->val<l2->val){
+            a=l1;
+            a->next=mergeTwoLists(l1->next,l2);
+        }
+        else{
+            a=l2;
+            a->next=mergeTwoLists(l1,l2->next);
+        }
+        return a;
+    }
+};

@@ -1,0 +1,86 @@
+//Rotate_Array
+
+class Solution {
+public:
+    void rotate(vector<int>& num, int k) {
+        int i, n, x, y, temp, j=0;
+        n=num.size();
+       for(i=0;i<k;i++)
+       {
+          for(j=n-1;j>0;j--)
+          {
+              if(j==(n-1))
+                  temp=num[j];
+              num[j]=num[j-1];
+          }
+          if((n-1)>0)
+              num[0]=temp;
+       }
+    }
+};
+
+//Count_Negative_Numbers_In_An_Array
+
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int m,n,i,j,c=0;
+        m=grid.size();
+        n=grid[i].size();
+        for(i=0;i<m;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                if(grid[i][j]<0)
+                    c++;
+            }
+        }
+        return c;
+    }
+};
+
+//Maximum_Subarray
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) 
+    {
+        int n,i,sum=0, max=INT_MIN;
+        n=nums.size();
+        for(i=0;i<n;i++)
+        {
+            sum=sum+nums[i];
+            if(sum>max)
+               max=sum;
+            if(sum<0)
+               sum=0;
+        }
+        return max;
+    }
+};
+
+
+//Sieve_of_Eratosthenes
+
+class Solution{
+public:
+    vector<int> sieveOfEratosthenes(int N)
+    {
+    	vector<int> num;
+        int j,i,k=0;
+        for(i=2;i<=N;i++)
+        {
+           for(j=2;j<=N;j++)
+            {
+                if(i==j)
+                {
+                    num.push_back(i);
+                    break;
+                }
+                if(i%j==0)
+                break;
+            }
+        }
+        return num;
+    }
+};

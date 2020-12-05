@@ -1,0 +1,75 @@
+Q1. Valid Palindrome
+//https://leetcode.com/problems/valid-palindrome/
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int si=0;
+        int ei=(s.size())-1;
+        while(si<ei)
+        {
+            while(isalnum(s[si])==false && si<ei)
+                si++;
+            while(isalnum(s[ei])==false && si<ei)
+                ei--;
+            
+            if(tolower(s[si])!= tolower(s[ei]))
+                return false;
+            
+            si++;
+            ei--;
+        }
+        return true;
+    }
+};
+
+Q2.Reverse Vowels
+//https://leetcode.com/problems/reverse-vowels-of-a-string/
+
+class Solution {
+public:
+    string reverseVowels(string s) {
+        
+        int i=0;
+        int j=(s.size())-1;
+        
+        while(i<j)
+        {
+            while(tolower(s[i])!='a' &&  tolower(s[i])!='e'&& tolower(s[i])!='i'&& tolower(s[i])!='o'&&
+               tolower(s[i])!='u' && i<j)
+                i++;
+            while(tolower(s[j])!='a' && tolower(s[j])!='e'&&tolower(s[j])!='i'&&tolower(s[j])!='o'&&
+               tolower(s[j])!='u' && j>i)
+                j--;
+            // cout<<s[i]<<" "<<s[j]<<endl;
+            char temp;
+            temp=s[i];
+            s[i]=s[j];
+            s[j]=temp;
+          //  cout<<s[i]<<" "<<s[j]<<endl;
+        i++;
+            j--;
+        }
+        return s;
+        
+        
+    }
+};
+
+Q3. Target array in given order
+//https://leetcode.com/problems/create-target-array-in-the-given-order/
+
+class Solution {
+public:
+    vector<int> createTargetArray(vector<int>& nums, vector<int>& index) {
+        
+        vector<int>target;
+        
+        for(int i=0;i<index.size();i++)
+        {   
+            target.insert(target.begin()+index[i],nums[i]);
+        }
+        return target;
+    }
+};
+

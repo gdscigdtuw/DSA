@@ -1,0 +1,47 @@
+class Solution {
+
+    
+    public void reverse(int[] nums, int i, int j){
+         
+        //reversing the array here i represents the first element of the array and j the last
+        while(i < j){
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            i++;
+            j--;
+        }
+        
+    }
+   
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k = k%n;
+        if(k< 0){
+            k = k + n;
+        }
+        //reversing part one of the array
+        reverse(nums, 0, n - k -1);
+         //reversing part of the array
+        reverse(nums, n - k, n -1);
+        //reversing the entire array now
+        reverse(nums, 0, n - 1);
+        
+     
+    }
+
+    public int countNegatives(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int count = 0;
+        for(int i = 0; i < m; i++){
+            for(int j =0; j < n; j++){
+                if(grid[i][j] < 0){
+                    count += 1;
+                }
+                grid[i][j]++;
+            }
+        }
+       return count; 
+  }
+}

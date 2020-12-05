@@ -1,0 +1,198 @@
+1.  
+Q-Missing number in array: https://leetcode.com/problems/missing-number/
+A-
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int totalSum,numsSum=0,n,missingNum;
+        for(auto i=nums.begin();i<nums.end();i++)
+            numsSum=numsSum +  *i;
+        n=nums.size();
+        totalSum=(n*(n+1))/2;
+        missingNum=totalSum-numsSum;
+        return missingNum;
+
+    }
+};
+
+Q-Remove duplicates from Sorted Array: https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+A-
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=0;
+        if(!nums.size())
+            return 0;
+         for(auto j=0;j<nums.size();j++)
+          {
+            if(nums[i]!=nums[j])
+                i++;
+            nums[i]=nums[j];
+
+           }
+          return i+1;
+    }
+
+};
+
+
+A-
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int rs=0,cs=0,k=0;
+        int re=matrix.size()-1;
+        int ce=matrix[0].size()-1;
+        vector<int>arr;
+        while(rs<=re && cs<=ce)
+        {
+            for(int i=cs;i<=ce;i++)
+            {  arr[k]=matrix[rs][i];
+                  k++;}
+            rs++;
+            for(int i=rs;i<=re;i++)
+            {  arr[k]=matrix[i][ce];
+                   k++;}
+            ce--;
+            if(rs>=re||cs>ce)
+                return arr;
+            for(int i=ce;i>=cs;i--)
+            {   arr[k]=matrix[re][i];
+                k++;}
+            re--;
+            for(int i=re;i>=rs;i--)
+            {    arr[k]=matrix[i][cs];
+                  k++;}
+            cs++;
+        }
+        return arr;
+    }
+};
+
+
+Q-Rotate Array: https://leetcode.com/problems/rotate-array/
+A-
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if(nums.size()>1)
+        {vector<int>arr;
+         if(k>nums.size())
+             k=k-nums.size();
+        for(int i=nums.size()-k;i<nums.size();i++)
+            arr.push_back(nums[i]);
+        for(int i=0;i<nums.size()-k;i++)
+            arr.push_back(nums[i]);
+        nums.clear();
+        for(int i=0;i<arr.size();i++)
+            nums.push_back(arr[i]);}
+       for(auto i=nums.begin();i!=nums.end();i++)
+       {cout<<*i;}
+    }
+};
+
+Q-Count negative numbers: https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/ 
+A-
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        int count=0;
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+                if(grid[i][j]<0)
+                    count++;
+        }
+        return count;
+    }
+};
+
+Q-Maximum Subarray: https://leetcode.com/problems/maximum-subarray/
+A-
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxSum=INT_MIN;
+        int curSum=0;
+        {for(int i=0;i<nums.size();i++)
+        { curSum=curSum+nums[i];
+            if(curSum>maxSum)
+              maxSum=curSum;
+          if(curSum<0)
+              curSum=0;
+        }}
+
+        return maxSum;
+    }
+};
+
+
+
+Q-Move Zeroes: https://leetcode.com/problems/move-zeroes/
+A-
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int i=0;
+        for(int j=0;j<nums.size();j++)
+        {
+          if(nums[j]!=0)
+          {swap(nums[i],nums[j]);
+            i++;
+           }
+        }
+
+}
+};
+
+
+
+
+
+Q-Product Of array except self: https://leetcode.com/problems/product-of-array-except-self/
+A-
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int yes=1;
+        for(int i=0;i<nums.size();i++)
+        {   
+            yes=yes*nums[i];
+            else if(nums[i]==0)
+                continue;
+
+        }
+        for(int i=0;i<nums.size();i++)
+        {      
+            if(nums[i]==0)
+              nums[i]=1; 
+             nums[i]=yes/nums[i];
+        }
+        return nums;
+
+    }
+};
+
+
+Q-Monotonic Array: https://leetcode.com/problems/monotonic-array/
+A-
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+        int cnt=0;int mnt=0;
+        if(A.size()==1) return true;
+        for(int i=1;i<A.size();i++)
+        {if(A[i-1]<=A[i])
+           {  cnt++;}
+         else if(A[i-1]>=A[i])
+           {   mnt++;}
+        }
+        if( cnt==(A.size()-1) || mnt==(A.size()-1) )
+            return true;
+         else 
+             return false;
+
+    }
+};
