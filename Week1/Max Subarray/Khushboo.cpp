@@ -17,10 +17,9 @@ public:
            cout<<curr<<" "<<max_<<endl; 
         }
         return max_;
-        
-        
-        
+               
     }
 };
+
 
 
