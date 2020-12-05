@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string reverseOnlyLetters(string str) {
+
+        int i=0, j=str.length()-1;
+        
+        while(i<j){
+            if(isalpha(str[i]) && isalpha(str[j])){
+                swap(str[i], str[j]);      
+                i++; j--;
+            }
+            else if(!isalpha(str[i]) && !isalpha(str[j])){
+                i++; j--;
+            }
+            else if(!isalpha(str[i]) && isalpha(str[j])){
+                i++;
+            }
+            else if(isalpha(str[i]) && !isalpha(str[j])){
+                j--;
+            }
+        }
+        return str;
+    }
+};
+
+Time Complexity: O(n)
+Space Complexity: O(1)
