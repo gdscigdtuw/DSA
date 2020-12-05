@@ -1,7 +1,6 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        
         int max_,curr;
         max_=curr=nums[0];
         
@@ -19,6 +18,7 @@ public:
         return max_;
                }
 };
+
 
 
 
