@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+        string vovels{"aeiouAEIOU"};
+        string::iterator startpos = s.begin();
+        string::iterator endpos = s.end();
+        while (startpos != endpos && (startpos - 1) != endpos){
+            if (!(find(vovels.begin(), vovels.end(), *startpos) != vovels.end())) startpos++;
+            else if (!(bool)(find(vovels.begin(), vovels.end(), *endpos) != vovels.end())) endpos--;
+            else {
+                swap(*startpos, *endpos);
+                startpos++;
+                endpos--;
+            }
+        }
+        return s;
+    }
+};
