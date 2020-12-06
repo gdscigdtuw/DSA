@@ -1,0 +1,20 @@
+class Solution {
+    void reverse_range(int[] arr, int i, int j) {
+        while (i < j)
+        {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    public void rotate(int[] nums, int k) {
+        k = k%nums.length;
+        if (nums.length <= 1)
+            return;
+        reverse_range(nums, 0, nums.length-1);
+        reverse_range(nums, k, nums.length-1);
+        reverse_range(nums, 0, k-1);
+    }
+}
