@@ -1,0 +1,51 @@
+#include<iostream>
+using namespace std;
+
+void pushZeroToEnd(int arr[],int n)
+{
+    int count=0; //it will store the no of non zero elements;
+    for(int i=0;i<n;i++)
+    {
+
+        if(arr[i]!=0)
+        {
+
+            arr[count++]=arr[i];
+        }
+    }
+
+    //to store zero after all the non zero elements are arranged in the front
+    while(count<n)
+    {
+        arr[count++]=0;
+    }
+}
+void print(int arr[],int n)
+{
+
+    for(int i=0;i<n;i++)
+    {
+
+        cout<<arr[i]<<" ";
+    }
+}
+
+
+
+int main()
+{
+
+    int arr[100];
+    int n;
+    cout<<"Enter the no of elements you want in array";
+    cin>>n;
+    cout<<"Enter the elements of array";
+    for(int i=0;i<n;i++)
+    {
+
+        cin>>arr[i];
+    }
+    pushZeroToEnd(arr,n);
+    print(arr,n);
+
+}
