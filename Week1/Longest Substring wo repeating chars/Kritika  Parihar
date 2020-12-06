@@ -1,0 +1,25 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int start = 0;
+        int counter = 0;
+        int max = 0;
+
+        int count[] = new int[256];
+
+        for(int i=0; i< s.length(); i++){
+            if(count[s.charAt(i)]++ == 0){  // counting unique characters
+                counter++;
+            }
+
+            if(i-start+1 > counter){
+                if(--count[s.charAt(start++)] == 0){
+                    counter--;
+                }
+            }
+
+            max = Math.max(max, i-start+1);
+        }
+
+        return max;
+    }
+}
