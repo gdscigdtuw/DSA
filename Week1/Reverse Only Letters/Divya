@@ -1,0 +1,25 @@
+class Solution {
+
+    public:
+string reverseOnlyLetters(string S) {
+int i=0;
+int j=S.size();
+
+    while(i<j)
+    {
+        if(isalpha(S[i]) && isalpha(S[j]))
+        {
+            char m=S[i];
+          S[i]=S[j];
+            S[j]=m;
+            i++;
+            j--;
+        }
+        else if(isalpha(S[i]) && !isalpha(S[j]))
+                 j--;
+      else if(!isalpha(S[i]))
+             i++;
+        
+    }
+    return S;
+}};
