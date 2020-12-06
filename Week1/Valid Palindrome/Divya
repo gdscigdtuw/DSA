@@ -1,0 +1,30 @@
+class Solution {
+public:
+static bool isValid(char c){
+if((c<='z'&&c>='a')||(c>='A'&&c<='Z')||(c>='0'&&c<='9')){
+return true;
+}
+return false;
+}
+bool isPalindrome(string s) {
+int start = 0;
+int end = s.length()-1;
+
+    while(start<end){
+        if(!isValid(s[start])){
+            start++;
+        }else if(!isValid(s[end])){
+            end--;
+        }else if(tolower(s[start])!=tolower(s[end])){
+            return false;
+        }else if(tolower(s[start])==tolower(s[end])){
+            start++;
+            end--;
+        }
+        
+    }
+    
+    return true;
+}
+};
+
