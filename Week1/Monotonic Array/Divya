@@ -1,0 +1,24 @@
+class Solution {
+
+public:
+    bool isMonotonic(vector<int>& A) {
+        
+        bool isIncreasing = A[0] < A[A.size()-1]; //Checking array is increasing 
+            
+        for(int i = 0; i < A.size() - 1 ; i++)
+        {
+            if(isIncreasing)
+            {
+                if(A[i] > A[i+1])
+                    return false;
+            }
+            else
+            {
+                if(A[i] < A[i+1])
+                    return false;
+            }
+        }
+        
+        return true;        
+    }
+};
