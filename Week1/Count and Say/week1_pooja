@@ -1,0 +1,39 @@
+class Solution {
+public:
+    string op = "";
+    string countAndSay(int n) {
+        
+        solve(n);
+        return op;
+    }
+    
+    void solve(int n)
+    {
+        
+        if(n == 1)
+         {
+            op = "1";
+            return ;
+        }
+
+        solve(n - 1);
+
+        string op1;
+        
+        for(int i = 0; i < op.length(); i++)
+        {
+            int count = 1;
+            while(op[i] == op[i + 1] && i + 1 < op.length())
+            {
+                count++;
+                i++;
+            }
+            
+            op1.push_back(count + '0');  //converting count into string
+            op1.push_back(op[i]);
+        }
+
+        op = op1;
+    }
+ 
+};
