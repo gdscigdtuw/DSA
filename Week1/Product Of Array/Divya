@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int i,j,pro=1;
+        vector<int> pre(nums.size()),suff(nums.size()),output(nums.size());
+        for(i=0;i<nums.size();i++){
+            pro=pro*nums[i];
+            pre[i]=pro;
+        }
+        pro=1;
+        for(i=nums.size()-1;i>=0;i--){
+            pro=pro*nums[i];
+            suff[i]=pro;
+        }
+        for(i=0;i<nums.size();i++){
+            if(i==0) output[i]=suff[i+1];
+            else if(i==nums.size()-1) output[i]=pre[i-1];
+            else output[i]=pre[i-1]*suff[i+1];
+        }
+        return output;
+    }
+};
