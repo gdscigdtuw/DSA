@@ -1,0 +1,16 @@
+class Solution {
+public int[] createTargetArray(int[] nums, int[] index) {
+int a[] = new int[nums.length];
+
+    for (int i = 0; i < nums.length; i++) {
+        if (a[index[i]] == 0) {
+            a[index[i]] = nums[i];
+        } else {
+            System.arraycopy(a, index[i], a, index[i] + 1, (a.length - index[i]) - 1);
+            a[index[i]] = nums[i];
+        }
+    }
+    return a;
+}
+}
+

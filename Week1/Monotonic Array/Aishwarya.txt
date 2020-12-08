@@ -1,0 +1,11 @@
+class Solution {
+    public boolean isMonotonic(int[] A) {
+        boolean isDec = true, isIn = true;  
+        for(int i=1;i<A.length;i++){
+            isIn&=(A[i]>=A[i-1]);
+            isDec&=(A[i]<=A[i-1]);
+            if(!isIn && !isDec) return false;
+        }
+        return (isIn|isDec);
+    }
+}

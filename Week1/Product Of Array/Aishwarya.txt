@@ -1,0 +1,23 @@
+class Solution {
+public int[] productExceptSelf(int[] nums) {
+
+    int prefix_product_array [] = new int [nums.length];
+    int suffix = 1;
+    prefix_product_array[0]=nums[0];
+	
+    for(int pos=1;pos<prefix_product_array.length;pos++)
+    {
+        prefix_product_array[pos]=prefix_product_array[pos-1] * nums[pos];
+    }
+
+    for(int pos = prefix_product_array.length-1 ; pos>0;pos--)
+    {
+        prefix_product_array[pos] = prefix_product_array[pos-1]*suffix;
+        suffix*=nums[pos];
+    }
+    
+     prefix_product_array[0] = suffix;
+
+    return prefix_product_array;
+}
+}
