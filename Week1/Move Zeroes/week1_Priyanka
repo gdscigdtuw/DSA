@@ -1,0 +1,24 @@
+public class Solution {
+
+    public void moveZeroes(int nums[]) {
+        int vacant = -1;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                if (vacant == -1) // set "vacant" if first time seeing 0
+                    vacant = i;
+            } else {
+                if (vacant != -1) {
+                    swap(nums, i, vacant);
+                    vacant++;
+                }
+            }
+        }
+    }
+
+    private void swap(int nums[], int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
