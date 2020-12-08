@@ -1,0 +1,294 @@
+(1.)----------------------------------------------
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int totalSum,numsSum=0,n,missingNum;
+        for(auto i=nums.begin();i<nums.end();i++)
+            numsSum=numsSum +  *i;
+        n=nums.size();
+        totalSum=(n*(n+1))/2;
+        missingNum=totalSum-numsSum;
+        return missingNum;
+        
+    }
+};
+
+(2.)----------------------------------------------
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=0;
+        if(!nums.size())
+            return 0;
+         for(auto j=0;j<nums.size();j++)
+          {
+            if(nums[i]!=nums[j])
+            {   i++;
+                nums[i]=nums[j];}
+            
+           }
+          return i+1;
+    }
+     
+};
+
+(3.)------------------------------------------------
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxSum=INT_MIN;
+        int curSum=0;
+        {for(int i=0;i<nums.size();i++)
+        { curSum=curSum+nums[i];
+            if(curSum>maxSum)
+              maxSum=curSum;
+          if(curSum<0)
+              curSum=0;
+        }}
+       
+        return maxSum;
+    }
+};
+
+(4.)-----------------------------------------------------
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int rs=0,cs=0;
+        int re=matrix.size()-1;
+        int ce=matrix[0].size()-1;
+        vector<int>arr;
+        while(rs<=re && cs<=ce&& matrix.size()!=0)
+        {
+            for(int i=cs;i<=ce;i++)
+               arr.push_back(matrix[rs][i]);
+                  rs++;
+            for(int i=rs;i<=re;i++)
+               arr.push_back(matrix[i][ce]);
+                  ce--;
+            if(rs>re||cs>ce)
+                return arr;
+            for(int i=ce;i>=cs;i--)
+               arr.push_back(matrix[re][i]);
+                  re--;
+            for(int i=re;i>=rs;i--)
+               arr.push_back(matrix[i][cs]);
+                   cs++;
+        }
+        return arr;
+    }
+};
+
+(5.)---------------------------------------------------------
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if(nums.size()>1)
+        {vector<int>arr;
+         if(k>nums.size())
+             k=k-nums.size();
+        for(int i=nums.size()-k;i<nums.size();i++)
+            arr.push_back(nums[i]);
+        for(int i=0;i<nums.size()-k;i++)
+            arr.push_back(nums[i]);
+        nums.clear();
+        for(int i=0;i<arr.size();i++)
+            nums.push_back(arr[i]);}
+       for(auto i=nums.begin();i!=nums.end();i++)
+       {cout<<*i;}
+    }
+};
+
+(6.)----------------------------------------------------------
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int totalproduct=1;int z=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]==0)
+            {z++;}
+            else
+                totalproduct=totalproduct*nums[i];
+        }
+        for(int j=0;j<nums.size();j++)
+        { 
+            if(nums[j]!=0 && z>=1)
+                nums[j]=0;
+            else if(nums[j]!=0 && z==0)
+                nums[j]=totalproduct/nums[j];
+            else if(nums[j]==0 && z==1)
+                nums[j]=totalproduct;
+            else if(nums[j]==0 && z>1)
+                nums[j]=0;
+        }
+        return nums;
+                    
+    }
+};
+
+(7.)---------------------------------------------------------
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int i=0;
+        for(int j=0;j<nums.size();j++)
+        {
+          if(nums[j]!=0)
+          {swap(nums[i],nums[j]);
+            i++;
+           }
+        }
+        
+}
+};
+
+
+(8.)-----------------------------------------------------
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int piv=0;int fs=0,bs=0;
+        for(int i=0;i<nums.size();i++)
+                fs=fs+nums[i];
+        for(piv;piv<nums.size();piv++)
+       {   
+           if(bs== fs-bs-nums[piv])
+             return piv;
+            bs=bs+nums[piv];
+           
+       }
+        return -1;
+    }
+};
+
+(9.)---------------------------------------------------------
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+        int cnt=0;int mnt=0;
+        if(A.size()==1) return true;
+        for(int i=0;i<A.size()-1;i++)
+        {if(A[i]<A[i+1])
+           {  cnt++;}
+         else if(A[i]>A[i+1])
+           {   mnt++;}
+         else if(A[i]==A[i+1])
+           {   mnt++;cnt++;}  
+        }
+        if( cnt==A.size()-1 || mnt==A.size()-1)
+            return true;
+         else 
+             return false;
+        
+    }
+};
+
+(10.)------------------------------------------------------
+class Solution {
+public:
+    int xorOperation(int n, int start) {
+        int arr[1000];int x=0;
+        for(int i=0;i<n;i++)
+            arr[i]=start+2*i;
+        for(int i=0;i<n;i++)
+            x=x^arr[i];
+        return x;
+    }
+};
+
+(12.)-------------------------------------------------------
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        int count=0;
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+                if(grid[i][j]<0)
+                    count++;
+        }
+        return count;
+    }
+};
+
+(13.)---------------------------------------------------------
+class Solution {
+public:
+    vector<int> createTargetArray(vector<int>& nums, vector<int>& index) {
+        vector<int>t;
+        for(int i=0;i<nums.size();i++)
+        {
+          t.insert(t.begin()+index[i],nums[i]);  
+        }
+        return t;
+    }
+};
+
+(15.)------------------------------------------------------------
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        
+        if(s.size()==0)
+            return true;
+        vector<char>a;
+        for(int i=0;i<s.size();i++)
+        { if((s[i]>='A' && s[i]<='Z')||(s[i]>='a' && s[i]<='z')||(s[i]>='0' && s[i]<='9'))
+           {
+            a.push_back(toupper(s[i]));
+           }
+        }
+        for(int i=0,j=a.size()-1;i<a.size()/2;i++,j--)
+        {if(a[i]!=a[j])
+          return false;
+         }
+     return true;
+        
+    }
+};
+
+(16.)---------------------------------------------------------------------
+class Solution {
+public:
+    string reverseOnlyLetters(string S) {
+        stack<char>a;
+        for(int i=0;i<S.size();i++)
+        {   if((S[i]>='A'&& S[i]<='Z')||(S[i]>='a'&& S[i]<='z'))
+            a.push(S[i]);
+        }
+        for(int i=0;i<S.size();i++)
+        {   if((S[i]>='A'&& S[i]<='Z')||(S[i]>='a'&& S[i]<='z'))
+           {S[i]=a.top();
+            a.pop();}
+         
+         
+        }
+        
+        return S;
+    }
+};
+
+(18.)--------------------------------------------------------------------------
+class Solution {
+public:
+    string reverseVowels(string S) {
+        stack<char>m;
+        for(int i=0;i<S.size();i++)
+        {
+            if(S[i]=='a'||S[i]=='e'||S[i]=='i'||S[i]=='o'||S[i]=='u'||S[i]=='A'||S[i]=='E'||S[i]=='I'||S[i]=='O'||S[i]=='U')
+                m.push(S[i]);
+        }
+        for(int i=0;i<S.size();i++)
+        {  
+            if(S[i]=='a'||S[i]=='e'||S[i]=='i'||S[i]=='o'||S[i]=='u'||S[i]=='A'||S[i]=='E'||S[i]=='I'||S[i]=='O'||S[i]=='U')
+            {  S[i]=m.top();
+               m.pop();
+            }
+        }
+        
+       return S;
+    }
+};
