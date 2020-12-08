@@ -1,0 +1,25 @@
+  public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> pascals = new ArrayList<>();
+        
+        if (numRows == 0)
+            return pascals;
+        
+        List<Integer> firstRow = new ArrayList<>();
+        firstRow.add(1);
+        pascals.add(firstRow);
+        
+        for (int i = 1; i < numRows; i++) {
+            List<Integer> prevRow = pascals.get(i-1);
+            List<Integer> newRow = new ArrayList<>();
+            newRow.add(1);
+            // Iterate i - 1 times (current numRow - 1)
+            // Starting at k = 1 because k = 0 is already added being '1'
+            for (int k = 1; k < i; k++) {
+                int sum = prevRow.get(k-1) + prevRow.get(k);
+                newRow.add(sum);
+            }
+            newRow.add(1);
+            pascals.add(newRow);
+        }
+        return pascals;
+    }
