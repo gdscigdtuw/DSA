@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+         
+       return  A[0] <= A[A.size() - 1] ? isIncreasing(A) : isDecreasing(A); 
+    }
+    
+    bool isIncreasing(vector<int>& A){
+        
+        for(int i = 1; i < A.size(); i++)
+            if(A[i - 1] > A[i])
+                return false;
+        return true;
+    }
+    
+    bool isDecreasing(vector<int>& A){
+          
+        for(int i = 1; i < A.size(); i++)
+            if(A[i - 1] < A[i])
+                return false;
+        return true;
+    }
+};
