@@ -14,7 +14,7 @@
 			};
 			
 
-			//2. Remove Duplicates from Sorted Array//
+//2. Remove Duplicates from Sorted Array//
 			class Solution {
 			public:
 			int removeDuplicates(vector<int>& nums) {
@@ -33,7 +33,7 @@
 			}
 			};
       
-      //3.. Maximum Subarray//
+  //3.. Maximum Subarray//
 			
 
 			class Solution {
@@ -58,9 +58,8 @@
 			};
 
 
-			
-
-			//4. Spiral Matrix//
+		
+//4. Spiral Matrix//
 			class Solution {
 			public:
 			vector<int> spiralOrder(vector<vector<int>>& matrix) {
@@ -96,24 +95,47 @@
 			}
 			}
 			return ans;
-      }
+                        }
 			};
       
-      //5. Rotate Arry//
-      class Solution {
+      
+//5. Rotate Array//
+                       class Solution {
+                       public:
+                       void rotate(vector<int>& nums, int k) {
+                       int a[nums.size()];
+                       for(int i=0;i<nums.size();i++){
+                       a[(i+k)%nums.size()]=nums[i];
+                       }
+                       for(int i=0;i<nums.size();i++){
+                       nums[i]=a[i];
+                        }
+                        }
+                        };
+		
+//6.Target Array//
+
+
+
+class Solution 
+{
 public:
-void rotate(vector<int>& nums, int k) {
-int a[nums.size()];
-for(int i=0;i<nums.size();i++){
-a[(i+k)%nums.size()]=nums[i];
-}
-for(int i=0;i<nums.size();i++){
-nums[i]=a[i];
-}
-}
+    vector<int> createTargetArray(vector<int>& nums, vector<int>& index) 
+    {
+        vector<int> target;
+      for(int i=0;i<nums.size();i++)
+      {
+          target.insert(target.begin()+index[i],nums[i]);
+      }
+        return target;
+    }
 };
 
+
+
 //15. Valid Palindrome//
+
+
 bool isPalindrome(string s) {
     for (int i = 0, j = s.size() - 1; i < j; i++, j--) { 
         while (isalnum(s[i]) == false && i < j) i++; 
@@ -124,7 +146,9 @@ bool isPalindrome(string s) {
     return true;
 }
 
+
 //12. Count Negative Numbers in a Sorted Matrix//
+
 
 class Solution {
 public:
