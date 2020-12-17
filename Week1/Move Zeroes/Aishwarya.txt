@@ -1,0 +1,22 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int zeroPointer = 0;
+        int end = nums.length - 1;
+        
+        while (zeroPointer <= end) {
+            if(nums[zeroPointer] == 0) {
+                break;
+            }
+            zeroPointer ++;
+        }
+        int numPointer = zeroPointer+1;
+        while(numPointer <= end) {
+            if(nums[numPointer] != 0) {
+                nums[zeroPointer] = nums[numPointer];
+                nums[numPointer] = 0;
+                zeroPointer++;
+            }
+            numPointer++;
+        }
+    }
+}
