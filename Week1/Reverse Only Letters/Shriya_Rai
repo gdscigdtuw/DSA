@@ -1,0 +1,13 @@
+class Solution {
+public:
+    string reverseOnlyLetters(string S) {
+        int first=-1, last=S.size();
+        while(true) {
+            while(first<last and !isalpha(S[++first]));
+            while(first<last and !isalpha(S[--last]));
+            if(first==last) break;
+            swap(S[first],S[last]);
+        }
+        return S;
+    }
+};

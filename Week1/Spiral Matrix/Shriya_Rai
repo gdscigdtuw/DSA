@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> curPos {0,0};
+        vector<int> result;
+        vector<vector<int>> dirs {{0,1},{1,0},{0,-1},{-1,0}};
+        int curDir = 0;
+        
+        int RSize = matrix.size();
+        int CSize = matrix[0].size();
+        int numsSize = CSize * RSize;
+        
+        for(int i=0; i< numsSize; i++) {
+            //cout<<i<<" "<<curPos[0]<<" "<<curPos[1]<<endl;
+            result.push_back(matrix[curPos[0]][curPos[1]]);
+            matrix[curPos[0]][curPos[1]] = 101;
+            
+            int nextC = curPos[1] + dirs[curDir][1];
+            int nextR = curPos[0] + dirs[curDir][0];
+
+            if(nextC >= CSize || nextC < 0 || nextR >= RSize || nextR < 0 || matrix[nextR][nextC] == 101) {
+                nextR -= dirs[curDir][0];
+                nextC -= dirs[curDir][1];
+                curDir++;
+                if(curDir > 3) curDir = 0;
+                nextR += dirs[curDir][0];
+                nextC += dirs[curDir][1];
+            }
+            curPos[0] = nextR;
+            curPos[1] = nextC;
+        }
+        return result;
+    }
+};

@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int check(vector<int> &vec)
+    {
+        int n=vec.size();
+        int l=0,r=n-1,mid;
+        while(l<=r)
+        {
+            mid=l+(r-l)/2;
+            if(vec[mid]<0)
+            {
+                r=mid-1;
+            }
+            else
+            {
+                l=mid+1;
+            }
+        }
+        if(vec[mid]>=0 && mid==n-1)
+        {
+            return 0;
+        }
+        else if(vec[mid]>=0)
+        {
+            return n-mid-1;
+        }
+        else
+        {
+            return n-mid;
+        }
+    }
+    
+    int countNegatives(vector<vector<int>>& grid) {
+         int c=0;
+        for(auto &v: grid)
+        {
+            c=c+check(v);
+        }
+        return c;
+    }
+};
