@@ -1,0 +1,21 @@
+public int removeDuplicates(int[] nums) {
+
+		//if length is less than 2 return same length as new length
+		if(nums.length <2)
+			return nums.length;
+
+		//Initializing pointer 0,1
+		int firstPointer =0 ,secondPointer =1;
+
+		//loop till secondPointer till last index of the array
+		while(secondPointer< nums.length){
+
+			//if value of firstPointer and secondPointer are sane increment secondPointer
+			//else place secondPointer value in firstPointer+1
+			if(nums[firstPointer] == nums[secondPointer])  secondPointer++;
+			else  nums[++firstPointer] = nums[secondPointer++];
+		}
+
+		//return firstPointer+1 as new index
+		return firstPointer+1;
+	}

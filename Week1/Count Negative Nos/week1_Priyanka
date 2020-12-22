@@ -1,0 +1,21 @@
+class Solution {
+    public int countNegatives(int[][] grid) {
+        
+      int rowLength = grid.length;
+      int colLength = grid[0].length;
+      int row = 0;
+      int col = colLength - 1;
+      int sumOfNegativeNumbers = 0;
+        
+        //Binary search from top right.
+        while (row < rowLength && col >= 0) {
+            if (grid[row][col] < 0) {
+                sumOfNegativeNumbers += rowLength - row;
+                col--;
+            } else {
+                row++;
+            }
+        }
+        return sumOfNegativeNumbers;
+    }
+}

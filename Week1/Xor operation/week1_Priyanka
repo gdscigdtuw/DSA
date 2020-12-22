@@ -1,0 +1,12 @@
+class Solution {
+    public int xorOperation(int n, int start) {
+        int[] array = new int[n];
+        array[0] = start;
+        for ( int i = 1; i < n; i++ ) {
+            start += 2;
+            array[i] = start;
+            array[0] = array[0] ^ array[i];
+        }
+        return array[0];
+    }
+}
