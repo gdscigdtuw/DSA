@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) 
+    {
+        int n = A.size();
+        int count_inc = 1, count_dec = 1;
+        
+        if(n == 1 || n == 2)
+            return true;
+        
+        for(int i = 0; i < n-1; i++)
+        {
+            if(A[i] <= A[i+1])
+                count_inc++;
+            
+            if(A[i] >= A[i+1])
+                count_dec++;
+        }
+        
+        if(count_inc == n || count_dec == n)
+            return true;
+        else 
+            return false;
+    }
+};
