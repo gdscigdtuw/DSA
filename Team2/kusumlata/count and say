@@ -1,0 +1,27 @@
+class Solution {
+    public String countAndSay(int n) {
+    if (n == 1) {
+            return "1";
+        }
+        String base = "1";
+        for (int i = 2; i <= n; ++i) {
+            base = word(base);
+        }
+        return base;
+    }
+
+    private String word(String n) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        while (i < n.length()) {
+            char c = n.charAt(i);
+            int j = i + 1;
+            while (j < n.length() && n.charAt(j) == c) {
+                ++j;
+            }
+            sb.append(j - i).append(c);
+            i = j;
+        }
+        return sb.toString();
+    }
+}
